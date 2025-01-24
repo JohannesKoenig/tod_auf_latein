@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbrac0riwlr6i"]
+
+[ext_resource type="Script" path="res://3D/gui/gui_3d.gd" id="1_aksot"]
+[ext_resource type="Texture2D" uid="uid://b3cgc06p8a1m1" path="res://assets/icon.svg" id="2_yxuw0"]
+
+[node name="Gui_3D" type="CanvasLayer"]
+script = ExtResource("1_aksot")
+
+[node name="ActivateIcon" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_yxuw0")
