@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://diysw7jvds3vg"]
+
+[ext_resource type="PackedScene" uid="uid://dfodabcpoqqg0" path="res://3D/room.tscn" id="1_liiaf"]
+[ext_resource type="PackedScene" uid="uid://dbo3w8pbto743" path="res://3D/hallway.tscn" id="2_ymr8q"]
+
+[node name="Museum" type="Node3D"]
+
+[node name="Room" parent="." instance=ExtResource("1_liiaf")]
+
+[node name="Room2" parent="." instance=ExtResource("1_liiaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.6694)
+
+[node name="Hallway" parent="." instance=ExtResource("2_ymr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.8544)
+
+[node name="Hallway2" parent="." instance=ExtResource("2_ymr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.429)
+
+[node name="Room3" parent="." instance=ExtResource("1_liiaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42.9978)
+
+[node name="Room4" parent="." instance=ExtResource("1_liiaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.6672)
+
+[node name="Hallway3" parent="." instance=ExtResource("2_ymr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -53.8523)
+
+[node name="Hallway4" parent="." instance=ExtResource("2_ymr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.4268)
+
+[node name="Room5" parent="." instance=ExtResource("1_liiaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.9957)
+
+[node name="Room6" parent="." instance=ExtResource("1_liiaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -107.665)
+
+[node name="Hallway5" parent="." instance=ExtResource("2_ymr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -96.8501)
+
+[node name="Hallway6" parent="." instance=ExtResource("2_ymr8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -118.425)

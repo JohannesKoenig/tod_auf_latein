@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfodabcpoqqg0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qy0ud"]
+size = Vector2(12, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76ys6"]
+size = Vector3(12, 1, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rrtum"]
+size = Vector3(1, 4, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hbj6g"]
+size = Vector3(12, 1, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k4vxm"]
+size = Vector3(1, 2, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f4rjt"]
+size = Vector3(1, 2.2, 5)
+
+[node name="Room" type="Node3D"]
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_qy0ud")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.506294, 0)
+shape = SubResource("BoxShape3D_76ys6")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.51947, 1.89711, 0)
+mesh = SubResource("BoxMesh_rrtum")
+
+[node name="Wall9" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.09675, 0)
+mesh = SubResource("BoxMesh_hbj6g")
+
+[node name="Wall3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.15877, 5.23911)
+mesh = SubResource("BoxMesh_k4vxm")
+
+[node name="Door" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.06324, 2.251)
+visible = false
+mesh = SubResource("BoxMesh_f4rjt")
+
+[node name="Wall4" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.333, 1.063, 5.23417)
+mesh = SubResource("BoxMesh_f4rjt")
+
+[node name="Wall5" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.333, 1.063, 5.23417)
+mesh = SubResource("BoxMesh_f4rjt")
+
+[node name="Wall6" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.15877, -5.234)
+mesh = SubResource("BoxMesh_k4vxm")
+
+[node name="Door2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.06324, -2.31323)
+visible = false
+mesh = SubResource("BoxMesh_f4rjt")
+
+[node name="Wall7" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.33308, 1.06324, -5.234)
+mesh = SubResource("BoxMesh_f4rjt")
+
+[node name="Wall8" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.333, 1.063, -5.234)
+mesh = SubResource("BoxMesh_f4rjt")
+
+[node name="Wall2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.519, 1.897, 0)
+mesh = SubResource("BoxMesh_rrtum")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15827, 0)
+light_color = Color(1, 0.910121, 0.860644, 1)
+omni_range = 10.0

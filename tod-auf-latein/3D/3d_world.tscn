@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b65utuys8hgq"]
+
+[ext_resource type="PackedScene" uid="uid://diysw7jvds3vg" path="res://3D/museum.tscn" id="1_0et28"]
+[ext_resource type="PackedScene" uid="uid://bky1f36svx8a1" path="res://3D/3d_character_controller.tscn" id="2_vn1lp"]
+
+[sub_resource type="Environment" id="Environment_ptjjf"]
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1027
+volumetric_fog_albedo = Color(0.712707, 0.841233, 1, 1)
+
+[node name="3dWorld" type="Node3D"]
+
+[node name="Museum" parent="." instance=ExtResource("1_0et28")]
+
+[node name="3DCharacterController" parent="." instance=ExtResource("2_vn1lp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344901, 0)
+
+[node name="Camera3D" type="Camera3D" parent="3DCharacterController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645825, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ptjjf")
