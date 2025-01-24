@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bky1f36svx8a1" path="res://3D/3d_character_controller.tscn" id="2_vn1lp"]
 
 [sub_resource type="Environment" id="Environment_ptjjf"]
+tonemap_mode = 3
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.1027
-volumetric_fog_albedo = Color(0.712707, 0.841233, 1, 1)
+volumetric_fog_albedo = Color(0.806038, 0.8039, 0.807083, 1)
 
 [node name="3dWorld" type="Node3D"]
 
