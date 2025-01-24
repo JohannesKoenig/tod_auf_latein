@@ -1,21 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxo1woq3pa5ek"]
+[gd_scene load_steps=3 format=3 uid="uid://cxo1woq3pa5ek"]
 
 [ext_resource type="Texture2D" uid="uid://b3cgc06p8a1m1" path="res://assets/icon.svg" id="1_myahs"]
+[ext_resource type="PackedScene" uid="uid://jwlquupu6dd3" path="res://2D/Bild_1/player_1.tscn" id="2_dxa7b"]
 
 [node name="MiniGameScene" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -402.0
+offset_top = 67.0
+offset_right = -274.0
+offset_bottom = 195.0
 texture = ExtResource("1_myahs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="player" parent="." instance=ExtResource("2_dxa7b")]
