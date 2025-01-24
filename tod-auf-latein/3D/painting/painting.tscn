@@ -1,8 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://byk4sox5ju4k7"]
+[gd_scene load_steps=9 format=3 uid="uid://byk4sox5ju4k7"]
 
 [ext_resource type="Script" path="res://3D/painting/painting.gd" id="1_u30wk"]
+[ext_resource type="Shader" uid="uid://hqgdb14tom3y" path="res://3D/painting/painting.tres" id="2_kkfxk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5ukn"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e7b78"]
+frequency = 0.0001
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dqqxj"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_e7b78")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fomur"]
+render_priority = 0
+shader = ExtResource("2_kkfxk")
+shader_parameter/DistortionSpeed = 0.5
+shader_parameter/NoiseStrength = 0.2
+shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_dqqxj")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xn4c7"]
 size = Vector2(3, 2)
@@ -17,7 +32,7 @@ size = Vector3(0.1, 3.2, 0.1)
 
 [node name="Painting" type="Node3D"]
 script = ExtResource("1_u30wk")
-viewport_material = SubResource("StandardMaterial3D_s5ukn")
+viewport_material = SubResource("ShaderMaterial_fomur")
 
 [node name="Painting" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

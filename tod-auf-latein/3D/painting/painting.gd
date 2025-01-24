@@ -1,6 +1,6 @@
 class_name Painting extends Node3D
 
-@export var viewport_material: StandardMaterial3D
+@export var viewport_material: ShaderMaterial
 @export var mini_game_scene: PackedScene
 @onready var painting = $Painting
 @onready var sub_viewport = $SubViewport
@@ -26,7 +26,7 @@ func _ready():
 	sub_viewport.add_child(mini_game_scene_instance)
 
 	var viewport_texture = sub_viewport.get_texture()
-	viewport_material.albedo_texture = viewport_texture
+	viewport_material.set_shader_parameter("ViewportTexture", viewport_texture)
 	painting.material_overlay = viewport_material
 
 
