@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.798471, 0.830727, 0.927615, 1)
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+Events="*res://globals/events.gd"
+
 [input]
 
 Forward={

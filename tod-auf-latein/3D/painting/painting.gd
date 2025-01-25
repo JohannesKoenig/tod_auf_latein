@@ -38,6 +38,8 @@ func _get_configuration_warnings():
 
 func _on_area_entered(node_3d: Node3D):
 	active = true
+	Events.active_painting = self
 
 func _on_area_exited(node_3d: Node3D):
 	active = false
+	Events.active_painting = null

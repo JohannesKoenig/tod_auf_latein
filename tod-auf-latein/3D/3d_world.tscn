@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b65utuys8hgq"]
+[gd_scene load_steps=5 format=3 uid="uid://b65utuys8hgq"]
 
 [ext_resource type="PackedScene" uid="uid://diysw7jvds3vg" path="res://3D/museum.tscn" id="1_0et28"]
 [ext_resource type="PackedScene" uid="uid://bky1f36svx8a1" path="res://3D/3d_character_controller.tscn" id="2_vn1lp"]
+[ext_resource type="PackedScene" uid="uid://bbrac0riwlr6i" path="res://3D/gui/gui_3d.tscn" id="3_ggkf8"]
 
 [sub_resource type="Environment" id="Environment_ptjjf"]
 tonemap_mode = 3
@@ -23,3 +24,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645825, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ptjjf")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_ggkf8")]

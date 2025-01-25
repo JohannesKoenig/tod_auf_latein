@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://byk4sox5ju4k7"]
+[gd_scene load_steps=10 format=3 uid="uid://byk4sox5ju4k7"]
 
 [ext_resource type="Script" path="res://3D/painting/painting.gd" id="1_u30wk"]
 [ext_resource type="Shader" uid="uid://hqgdb14tom3y" path="res://3D/painting/painting.tres" id="2_kkfxk"]
@@ -24,6 +24,10 @@ size = Vector2(3, 2)
 subdivide_width = 10
 subdivide_depth = 10
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awr57"]
+albedo_color = Color(0.330123, 0.196992, 0.11641, 1)
+roughness = 0.64
+
 [sub_resource type="BoxMesh" id="BoxMesh_opp5h"]
 size = Vector3(0.1, 2.2, 0.1)
 
@@ -42,18 +46,22 @@ mesh = SubResource("PlaneMesh_xn4c7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Frame"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52196, 0, 0)
+material_override = SubResource("StandardMaterial3D_awr57")
 mesh = SubResource("BoxMesh_opp5h")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Frame"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.522, 0, 0)
+material_override = SubResource("StandardMaterial3D_awr57")
 mesh = SubResource("BoxMesh_opp5h")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Frame"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.00387561, 1.04464, 0)
+material_override = SubResource("StandardMaterial3D_awr57")
 mesh = SubResource("BoxMesh_33smm")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Frame"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.004, -1.045, 0)
+material_override = SubResource("StandardMaterial3D_awr57")
 mesh = SubResource("BoxMesh_33smm")
 
 [node name="SubViewport" type="SubViewport" parent="."]
