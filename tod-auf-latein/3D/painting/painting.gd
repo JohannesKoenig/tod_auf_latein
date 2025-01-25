@@ -58,5 +58,8 @@ func _on_area_exited(node_3d: Node3D):
 	Events.active_painting = null
 
 func _play_mini_game(playing: bool):
-	if Events.active_painting == self:
+	if Events.active_painting == self and playing:
 		mini_game_scene_instance.play()
+	if not playing:
+		mini_game_scene_instance.stop()
+	

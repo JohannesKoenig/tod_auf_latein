@@ -52,4 +52,12 @@ func _generate_polygons():
 		platforms.add_child(polygon2d)
 
 func play():
+	audio_stream_player.volume_db = 0
 	audio_stream_player.play()
+
+func stop():
+	var tween = create_tween()
+	tween.tween_property(audio_stream_player,"volume_db", -40, 1)
+	tween.play()
+	await tween.finished
+	audio_stream_player.stop()

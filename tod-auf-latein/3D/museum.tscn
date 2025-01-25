@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://diysw7jvds3vg"]
+[gd_scene load_steps=5 format=3 uid="uid://diysw7jvds3vg"]
 
 [ext_resource type="PackedScene" uid="uid://dfodabcpoqqg0" path="res://3D/room.tscn" id="1_liiaf"]
 [ext_resource type="PackedScene" uid="uid://dbo3w8pbto743" path="res://3D/hallway.tscn" id="2_ymr8q"]
+[ext_resource type="AudioStream" uid="uid://nv52ibvrcm1d" path="res://assets/Museum Ambience Test 2.wav" id="3_rcl47"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8sdk"]
 size = Vector3(3, 1, 2)
@@ -15,6 +16,9 @@ size = Vector3(3, 1, 2)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Painting/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23868e-08, -0.994071, 0.740922)
 shape = SubResource("BoxShape3D_q8sdk")
+
+[node name="DoubleDoor" parent="Room/Doors" index="0"]
+is_open = false
 
 [node name="Room2" parent="." instance=ExtResource("1_liiaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.6694)
@@ -48,5 +52,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -96.8501)
 
 [node name="Hallway6" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -118.425)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rcl47")
+autoplay = true
 
 [editable path="Room"]
