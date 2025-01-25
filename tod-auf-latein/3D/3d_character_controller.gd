@@ -1,9 +1,13 @@
 extends CharacterBody3D
 
+@onready var audio_stream_player_3d = $AudioStreamPlayer3D
+
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@export var walking_delay: float = 0.3
+var _last_step: float
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -30,5 +34,12 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	if is_on_floor():
+		if velocity.x != 0 or velocity.z != 0:
+			var now = Time.get_unix_time_from_system()
+			if now - _last_step > walking_delay:
+				_last_step = now
+				audio_stream_player_3d.play()
 
 	move_and_slide()

@@ -2,10 +2,15 @@ class_name MiniGameScene extends Node2D
 
 @export var platforms_definition_file_path: String = "res://assets/platforms.json"
 @export var audio_stream: AudioStream
-
+@export var background_material: Material
+@export var background_forest_material: Material
+@export var background_texture: Texture = preload("res://assets/background_forest_trees.png")
 
 @export var polygon_material: Material
 @export var polygon_texture: Texture
+
+@onready var sprite_2d = $ParallaxBackground/ParallaxLayer/Sprite2D
+@onready var sprite_2d_forest = $ParallaxBackground/ParallaxLayer2/Sprite2D
 
 
 var _platform_definitions: Array
@@ -30,6 +35,9 @@ var _player_start_position: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	sprite_2d.material = background_material
+	sprite_2d_forest.texture = background_texture
+	sprite_2d_forest.material = background_forest_material
 	audio_stream_player.stream = audio_stream
 	audio_stream_player.volume_db = 0.0
 	_player_start_position = character_body_2d.position
