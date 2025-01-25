@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cxo1woq3pa5ek"]
+[gd_scene load_steps=24 format=3 uid="uid://cxo1woq3pa5ek"]
 
 [ext_resource type="Script" path="res://2D/mini_game_scene.gd" id="1_kpmty"]
 [ext_resource type="Script" path="res://2D/character_body_2d.gd" id="2_0qk4n"]
@@ -48,6 +48,44 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_yavej"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.613594, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o05d6"]
+curve = SubResource("Curve_yavej")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_avg2d"]
+particle_flag_disable_z = true
+angle_min = -282.6
+angle_max = 127.7
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 40.32
+initial_velocity_max = 203.55
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -86.02
+linear_accel_max = -35.3
+radial_accel_min = -55.38
+radial_accel_max = 54.39
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_o05d6")
+hue_variation_min = -0.15
+hue_variation_max = 0.03
+
+[sub_resource type="Gradient" id="Gradient_gbbo2"]
+offsets = PackedFloat32Array(0.181818, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5otep"]
+gradient = SubResource("Gradient_gbbo2")
+width = 10
+height = 10
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
 [sub_resource type="Gradient" id="Gradient_hh4oa"]
 offsets = PackedFloat32Array(0, 0.993506)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -81,6 +119,13 @@ position = Vector2(5, -6)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ki8g4")
 autoplay = "default"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CharacterBody2D"]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_avg2d")
+texture = SubResource("GradientTexture2D_5otep")
+randomness = 1.0
+fixed_fps = 60
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(400, 0)
