@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://v7c0tq87ktjp"]
+
+[ext_resource type="PackedScene" uid="uid://d2m0uftbdsos0" path="res://3D/door.tscn" id="1_iroas"]
+[ext_resource type="Script" path="res://3D/double_door.gd" id="1_y3h6k"]
+
+[node name="DoubleDoor" type="Node3D"]
+script = ExtResource("1_y3h6k")
+is_open = true
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="door" parent="Pivot" instance=ExtResource("1_iroas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="Pivot2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="door2" parent="Pivot2" instance=ExtResource("1_iroas")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.5)

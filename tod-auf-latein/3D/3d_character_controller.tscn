@@ -4,11 +4,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xk25t"]
 radius = 0.25
-height = 1.0
+height = 1.5
 
 [node name="3DCharacterController" type="CharacterBody3D"]
 script = ExtResource("1_mmrkk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_xk25t")

@@ -20,7 +20,7 @@ volumetric_fog_albedo = Color(0.806038, 0.8039, 0.807083, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344901, 0)
 
 [node name="Camera3D" type="Camera3D" parent="3DCharacterController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645825, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15693, 0.0309397)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ptjjf")
