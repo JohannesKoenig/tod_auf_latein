@@ -1,41 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://jwlquupu6dd3"]
+[gd_scene load_steps=6 format=3 uid="uid://jwlquupu6dd3"]
 
-[ext_resource type="Texture2D" uid="uid://de5c1jyna4r5x" path="res://assets/sprites/Notenbrcht 2.png" id="1_i0a62"]
+[ext_resource type="Script" path="res://2D/scripts/character_body_2d.gd" id="1_u7c5b"]
+[ext_resource type="Texture2D" uid="uid://c76laitpwhd8b" path="res://assets/sprites/pixil-frame-0-11.png" id="2_0ysto"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v00ts"]
-atlas = ExtResource("1_i0a62")
-region = Rect2(0, 0, 100, 100)
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5c5w"]
+atlas = ExtResource("2_0ysto")
+region = Rect2(32, 0, 32, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pnfyc"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5c5w")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v00ts")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iayuq"]
-size = Vector2(104.5, 90)
+[sub_resource type="CircleShape2D" id="CircleShape2D_i0xg8"]
+radius = 10.0499
 
 [node name="player" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_u7c5b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(49, 48)
 sprite_frames = SubResource("SpriteFrames_pnfyc")
-animation = &"new_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(52, 53)
-shape = SubResource("RectangleShape2D_iayuq")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(49, 51)
+shape = SubResource("CircleShape2D_i0xg8")
