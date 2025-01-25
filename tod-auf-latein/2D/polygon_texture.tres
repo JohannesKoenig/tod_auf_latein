@@ -1,0 +1,10 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://bwel7ljwevh87"]
+
+[sub_resource type="Gradient" id="Gradient_jejbi"]
+offsets = PackedFloat32Array(0.00649351, 1)
+colors = PackedColorArray(2.31629e-07, 0.166076, 0.0444747, 1, 4.28664e-08, 0.0754263, 0.00154537, 1)
+
+[resource]
+gradient = SubResource("Gradient_jejbi")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true

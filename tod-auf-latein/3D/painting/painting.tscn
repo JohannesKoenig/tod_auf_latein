@@ -4,7 +4,8 @@
 [ext_resource type="Shader" uid="uid://hqgdb14tom3y" path="res://3D/painting/painting.tres" id="2_kkfxk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_e7b78"]
-frequency = 0.0001
+noise_type = 2
+frequency = 0.001
 domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dqqxj"]
@@ -15,8 +16,8 @@ noise = SubResource("FastNoiseLite_e7b78")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fomur"]
 render_priority = 0
 shader = ExtResource("2_kkfxk")
-shader_parameter/DistortionSpeed = 0.5
-shader_parameter/NoiseStrength = 0.2
+shader_parameter/DistortionSpeed = 0.0
+shader_parameter/NoiseStrength = 0.0
 shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_dqqxj")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xn4c7"]

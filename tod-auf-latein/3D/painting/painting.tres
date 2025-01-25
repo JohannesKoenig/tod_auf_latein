@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://hqgdb14tom3y"]
+[gd_resource type="VisualShader" load_steps=18 format=3 uid="uid://hqgdb14tom3y"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_rwu6o"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
@@ -30,6 +30,10 @@ operator = 2
 parameter_name = "NoiseStrength"
 default_value_enabled = true
 default_value = 1.0
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_nhkle"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0), 2, Vector2(1, 1)]
+op_type = 3
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_cej3b"]
 parameter_name = "NoiseTexture"
@@ -122,9 +126,15 @@ void fragment() {
 	vec2 n_out5p0 = vec2(n_out17p0) + n_out6p0;
 
 
+// Clamp:19
+	vec2 n_in19p1 = vec2(0.00000, 0.00000);
+	vec2 n_in19p2 = vec2(1.00000, 1.00000);
+	vec2 n_out19p0 = clamp(n_out5p0, n_in19p1, n_in19p2);
+
+
 	vec4 n_out8p0;
 // Texture2D:8
-	n_out8p0 = texture(ViewportTexture, n_out5p0);
+	n_out8p0 = texture(ViewportTexture, n_out19p0);
 
 
 // Output:0
@@ -141,7 +151,7 @@ nodes/fragment/3/position = Vector2(-1880, 260)
 nodes/fragment/4/node = SubResource("VisualShaderNodeInput_65qwu")
 nodes/fragment/4/position = Vector2(-3480, -100)
 nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_5c23c")
-nodes/fragment/5/position = Vector2(-800, 900)
+nodes/fragment/5/position = Vector2(-1000, 900)
 nodes/fragment/6/node = SubResource("VisualShaderNodeInput_4yqgv")
 nodes/fragment/6/position = Vector2(-2080, 1160)
 nodes/fragment/7/node = SubResource("VisualShaderNodeTexture2DParameter_hvio4")
@@ -166,4 +176,6 @@ nodes/fragment/17/node = SubResource("VisualShaderNodeFloatOp_w6u6q")
 nodes/fragment/17/position = Vector2(-107.552, 386.126)
 nodes/fragment/18/node = SubResource("VisualShaderNodeFloatParameter_0afkn")
 nodes/fragment/18/position = Vector2(-800, 100)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 6, 0, 5, 1, 7, 0, 8, 2, 5, 0, 8, 0, 8, 0, 0, 0, 4, 0, 10, 1, 10, 0, 3, 0, 11, 0, 10, 0, 9, 0, 12, 0, 13, 0, 12, 1, 12, 0, 11, 0, 3, 0, 15, 0, 15, 0, 16, 0, 16, 0, 17, 0, 18, 0, 17, 1, 17, 0, 5, 0)
+nodes/fragment/19/node = SubResource("VisualShaderNodeClamp_nhkle")
+nodes/fragment/19/position = Vector2(-580, 1040)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 6, 0, 5, 1, 7, 0, 8, 2, 8, 0, 0, 0, 4, 0, 10, 1, 10, 0, 3, 0, 11, 0, 10, 0, 9, 0, 12, 0, 13, 0, 12, 1, 12, 0, 11, 0, 3, 0, 15, 0, 15, 0, 16, 0, 16, 0, 17, 0, 18, 0, 17, 1, 17, 0, 5, 0, 5, 0, 19, 0, 19, 0, 8, 0)

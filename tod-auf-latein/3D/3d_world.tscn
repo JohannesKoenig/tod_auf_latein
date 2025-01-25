@@ -11,6 +11,8 @@ sdfgi_use_occlusion = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.1027
 volumetric_fog_albedo = Color(0.806038, 0.8039, 0.807083, 1)
+adjustment_enabled = true
+adjustment_brightness = 1.71
 
 [node name="3dWorld" type="Node3D"]
 
