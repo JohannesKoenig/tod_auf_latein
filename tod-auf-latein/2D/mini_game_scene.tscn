@@ -1,16 +1,52 @@
 [gd_scene load_steps=19 format=3 uid="uid://cxo1woq3pa5ek"]
 
 [ext_resource type="Script" path="res://2D/mini_game_scene.gd" id="1_kpmty"]
-[ext_resource type="Texture2D" uid="uid://b3cgc06p8a1m1" path="res://assets/icon.svg" id="1_myahs"]
 [ext_resource type="Script" path="res://2D/character_body_2d.gd" id="2_0qk4n"]
 [ext_resource type="Material" uid="uid://d4gftkr1jrpnq" path="res://2D/platform_buble_material.tres" id="2_yo1vo"]
+[ext_resource type="Texture2D" uid="uid://csyqxbray62ym" path="res://assets/Holde_Maid.png" id="5_ke07w"]
 [ext_resource type="AudioStream" uid="uid://br6k30fihaors" path="res://assets/Thema A und A' Summe.wav" id="5_qj2wn"]
-[ext_resource type="Shader" uid="uid://dbpqh6wc2c68l" path="res://2D/background_texture_shader_v2.tres" id="6_g3ler"]
 [ext_resource type="Material" uid="uid://drhdmapb0776k" path="res://2D/background_material.tres" id="6_kxc26"]
 [ext_resource type="Texture2D" uid="uid://dqqw4iso65x8j" path="res://assets/background_forest.png" id="6_w1qqq"]
 [ext_resource type="Texture2D" uid="uid://e00aqdautd1f" path="res://assets/background_forest_trees.png" id="7_aq4ml"]
+[ext_resource type="Material" uid="uid://ccg5m020rn7p8" path="res://2D/background_forest_material.tres" id="8_rt8ef"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfl1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoumn"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fvpq"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aybr8"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok545"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki8g4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoumn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fvpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aybr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok545")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_hh4oa"]
 offsets = PackedFloat32Array(0, 0.993506)
@@ -20,34 +56,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_hh4oa")
 width = 1440
 height = 960
-
-[sub_resource type="Gradient" id="Gradient_6y8e0"]
-offsets = PackedFloat32Array(0.778689, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxk5l"]
-gradient = SubResource("Gradient_6y8e0")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-metadata/_snap_enabled = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lf7bo"]
-noise_type = 0
-frequency = 0.0045
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_no87t"]
-seamless = true
-seamless_blend_skirt = 1.0
-noise = SubResource("FastNoiseLite_lf7bo")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4qfc"]
-shader = ExtResource("6_g3ler")
-shader_parameter/BaseColorTint = Color(0.0196495, 0.402146, 0.509164, 1)
-shader_parameter/ColorTint = Color(0.853418, 0.000391784, 0.812283, 1)
-shader_parameter/NoiseRamp = 0.343
-shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_no87t")
-shader_parameter/BlendTexture = SubResource("GradientTexture2D_nxk5l")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nkq3x"]
 
@@ -69,9 +77,11 @@ script = ExtResource("2_0qk4n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_cfl1j")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_myahs")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(5, -6)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ki8g4")
+autoplay = "default"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(400, 0)
@@ -110,10 +120,10 @@ texture = ExtResource("6_w1qqq")
 position = Vector2(400, 0)
 motion_scale = Vector2(0.8, 0.8)
 motion_offset = Vector2(-400, 0)
-motion_mirroring = Vector2(2880, 0)
+motion_mirroring = Vector2(2880, 1920)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-material = SubResource("ShaderMaterial_j4qfc")
+material = ExtResource("8_rt8ef")
 scale = Vector2(2, 2)
 texture = ExtResource("7_aq4ml")
 
