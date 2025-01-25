@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://2D/mini_game_scene.gd" id="1_kpmty"]
 [ext_resource type="Texture2D" uid="uid://b3cgc06p8a1m1" path="res://assets/icon.svg" id="1_myahs"]
 [ext_resource type="Script" path="res://2D/character_body_2d.gd" id="2_0qk4n"]
-[ext_resource type="Material" uid="uid://mt5uskc1kqai" path="res://2D/polygon_2d_bubble_material.tres" id="2_jy132"]
+[ext_resource type="Material" uid="uid://d4gftkr1jrpnq" path="res://2D/platform_buble_material.tres" id="2_yo1vo"]
 [ext_resource type="AudioStream" uid="uid://br6k30fihaors" path="res://assets/Thema A und A' Summe.wav" id="5_qj2wn"]
 [ext_resource type="Shader" uid="uid://dbpqh6wc2c68l" path="res://2D/background_texture_shader_v2.tres" id="6_g3ler"]
 [ext_resource type="Material" uid="uid://drhdmapb0776k" path="res://2D/background_material.tres" id="6_kxc26"]
@@ -53,10 +53,11 @@ shader_parameter/BlendTexture = SubResource("GradientTexture2D_nxk5l")
 
 [node name="MiniGameScene" type="Node2D"]
 script = ExtResource("1_kpmty")
-polygon_material = ExtResource("2_jy132")
+polygon_material = ExtResource("2_yo1vo")
 polygon_texture = ExtResource("6_w1qqq")
 
 [node name="Platforms" type="Node2D" parent="."]
+material = ExtResource("2_yo1vo")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 
