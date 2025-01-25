@@ -11,6 +11,8 @@ class_name MiniGameScene extends Node2D
 
 @onready var sprite_2d = $ParallaxBackground/ParallaxLayer/Sprite2D
 @onready var sprite_2d_forest = $ParallaxBackground/ParallaxLayer2/Sprite2D
+@onready var kill_zone = $KillZone
+
 
 var rect_height = 10000
 var rect_width = 200
@@ -58,6 +60,7 @@ func _ready():
 func _generate_polygons():
 	var x_max = -INF
 	var max_width = -INF
+	var y_max = -INF
 	for platform_definition in _platform_definitions:
 		var width = platform_definition["w"] * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
 		var height = POLYGON_HEIGHT
@@ -68,7 +71,7 @@ func _generate_polygons():
 			max_width = max(max_width, width)
 			x_max = new_max
 		var y = (platform_definition["y"] + POLYGON_CANVAS_Y_OFFSET) * POLYGON_CANVAS_Y_STRETCH
-		
+		y_max = max(y_max, y)
 		var polygon2d = Polygon2D.new()
 		polygon2d.color = Color.RED
 		polygon2d.material = polygon_material
@@ -86,6 +89,7 @@ func _generate_polygons():
 		polygon_collision_shape.polygon = polygon2d.polygon
 		polygon2d.add_child(polygon_static_body)
 		platforms.add_child(polygon2d)
+	kill_zone.position.y = y_max
 	
 	var max_point = Vector2(x_max + max_width, -rect_height/4)
 	var area_2D = Area2D.new()
@@ -102,6 +106,7 @@ func _generate_polygons():
 	area_2D.global_position = max_point
 
 func play():
+	character_body_2d.position = _player_start_position
 	audio_stream_player.volume_db = 0
 	audio_stream_player.play()
 	playing = true
