@@ -9,6 +9,8 @@ class_name MiniGameScene extends Node2D
 @export var polygon_material: Material
 @export var polygon_texture: Texture
 
+@onready var bubble_particles: PackedScene = preload("res://2D/platform_particles.tscn")
+
 @onready var sprite_2d = $ParallaxBackground/ParallaxLayer/Sprite2D
 @onready var sprite_2d_forest = $ParallaxBackground/ParallaxLayer2/Sprite2D
 @onready var kill_zone = $KillZone
@@ -87,6 +89,11 @@ func _generate_polygons():
 		var polygon_collision_shape: CollisionPolygon2D = CollisionPolygon2D.new()
 		polygon_static_body.add_child(polygon_collision_shape)
 		polygon_collision_shape.polygon = polygon2d.polygon
+		var bubble_particles_instance: GPUParticles2D = bubble_particles.instantiate()
+		bubble_particles_instance.process_material = bubble_particles_instance.process_material.duplicate(true)
+		bubble_particles_instance.process_material.emission_box_extents.x = width / 2
+		polygon2d.add_child(bubble_particles_instance)
+		bubble_particles_instance.position = Vector2(x + width / 2,y + height)
 		polygon2d.add_child(polygon_static_body)
 		platforms.add_child(polygon2d)
 	kill_zone.position.y = y_max

@@ -1,14 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://cxo1woq3pa5ek"]
+[gd_scene load_steps=20 format=3 uid="uid://cxo1woq3pa5ek"]
 
 [ext_resource type="Script" path="res://2D/mini_game_scene.gd" id="1_kpmty"]
 [ext_resource type="Script" path="res://2D/character_body_2d.gd" id="2_0qk4n"]
-[ext_resource type="Material" uid="uid://d4gftkr1jrpnq" path="res://2D/platform_buble_material.tres" id="2_yo1vo"]
+[ext_resource type="Material" uid="uid://debyk54ofbgq0" path="res://2D/platform_buble_material.tres" id="2_yo1vo"]
 [ext_resource type="Texture2D" uid="uid://csyqxbray62ym" path="res://assets/Holde_Maid.png" id="5_ke07w"]
 [ext_resource type="AudioStream" uid="uid://br6k30fihaors" path="res://assets/Thema A und A' Summe.wav" id="5_qj2wn"]
 [ext_resource type="Material" uid="uid://drhdmapb0776k" path="res://2D/background_material.tres" id="6_kxc26"]
 [ext_resource type="Texture2D" uid="uid://dqqw4iso65x8j" path="res://assets/background_forest.png" id="6_w1qqq"]
 [ext_resource type="Texture2D" uid="uid://e00aqdautd1f" path="res://assets/background_forest_trees.png" id="7_aq4ml"]
 [ext_resource type="Material" uid="uid://ccg5m020rn7p8" path="res://2D/background_forest_material.tres" id="8_rt8ef"]
+[ext_resource type="PackedScene" uid="uid://bb105ftdmo6p5" path="res://2D/platform_particles.tscn" id="10_i2jmo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfl1j"]
 
@@ -133,5 +134,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(0, 236)
 shape = SubResource("WorldBoundaryShape2D_nkq3x")
+
+[node name="PlatformParticles" parent="." instance=ExtResource("10_i2jmo")]
 
 [connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
