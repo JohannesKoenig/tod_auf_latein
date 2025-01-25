@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bm6p0hboquysn"
+path="res://.godot/imported/A und A' Violine 1.wav-88b71b6f20b4532f260d59ff53388fdf.sample"
+
+[deps]
+
+source_file="res://assets/A und A' Violine 1.wav"
+dest_files=["res://.godot/imported/A und A' Violine 1.wav-88b71b6f20b4532f260d59ff53388fdf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
