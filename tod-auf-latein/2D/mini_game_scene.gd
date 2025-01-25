@@ -1,8 +1,13 @@
 class_name MiniGameScene extends Node2D
 
 @export var platforms_definition_file_path: String = "res://assets/platforms.json"
+@export var audio_stream: AudioStream
+
+
 @export var polygon_material: Material
 @export var polygon_texture: Texture
+
+
 var _platform_definitions: Array
 var _total_length: float
 var ZOOM_FACTOR: int = 3
@@ -25,6 +30,7 @@ var _player_start_position: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	audio_stream_player.stream = audio_stream
 	audio_stream_player.volume_db = 0.0
 	_player_start_position = character_body_2d.position
 	if FileAccess.file_exists(platforms_definition_file_path):
@@ -70,12 +76,13 @@ func play():
 	playing = true
 
 func stop():
+	playing = false
 	var tween = create_tween()
 	tween.tween_property(audio_stream_player,"volume_db", -40, 1)
 	tween.play()
 	await tween.finished
 	audio_stream_player.stop()
-	playing = false
+	
 
 
 func _on_kill_zone_body_entered(body):

@@ -2,6 +2,9 @@ class_name Painting extends Node3D
 
 @export var viewport_material: ShaderMaterial
 @export var mini_game_scene: PackedScene
+@export var platforms_definition_file_path: String = "res://assets/platforms.json"
+@export var audio_stream: AudioStream
+
 var mini_game_scene_instance: MiniGameScene
 @onready var painting = $Painting
 @onready var sub_viewport = $SubViewport
@@ -26,6 +29,8 @@ func _ready():
 	
 	if mini_game_scene:
 		mini_game_scene_instance = mini_game_scene.instantiate()
+		mini_game_scene_instance.platforms_definition_file_path = platforms_definition_file_path
+		mini_game_scene_instance.audio_stream = audio_stream
 		sub_viewport.add_child(mini_game_scene_instance)
 
 	var viewport_texture = sub_viewport.get_texture()
@@ -63,5 +68,6 @@ func _play_mini_game(playing: bool):
 	if Events.active_painting == self and playing:
 		mini_game_scene_instance.play()
 	if not playing:
-		mini_game_scene_instance.stop()
+		if mini_game_scene_instance:
+			mini_game_scene_instance.stop()
 	

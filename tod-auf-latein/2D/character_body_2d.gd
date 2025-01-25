@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @export var speed = 300.0
-@export var jump_velocity = -80
+@export var jump_velocity = -100
 @export var jump_timer = 0.0
 var JUMP_TIMER_FACTOR = 15
 var current_velocity = 0
@@ -15,7 +15,7 @@ func _physics_process(delta):
 		return
 
 	if not is_on_floor():
-		velocity += get_gravity() * delta * 3
+		velocity += get_gravity() * delta * 4
 
 
 	if is_on_floor():
