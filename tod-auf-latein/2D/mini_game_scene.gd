@@ -12,6 +12,8 @@ class_name MiniGameScene extends Node2D
 @onready var sprite_2d = $ParallaxBackground/ParallaxLayer/Sprite2D
 @onready var sprite_2d_forest = $ParallaxBackground/ParallaxLayer2/Sprite2D
 
+var rect_height = 10000
+var rect_width = 200
 
 var _platform_definitions: Array
 var _total_length: float
@@ -54,10 +56,17 @@ func _ready():
 	character_body_2d.jump_velocity = character_body_2d.jump_velocity
 
 func _generate_polygons():
+	var x_max = -INF
+	var max_width = -INF
 	for platform_definition in _platform_definitions:
 		var width = platform_definition["w"] * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
 		var height = POLYGON_HEIGHT
 		var x = platform_definition["x"] * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
+		
+		var new_max = max(x, x_max)
+		if new_max > x_max:
+			max_width = max(max_width, width)
+			x_max = new_max
 		var y = (platform_definition["y"] + POLYGON_CANVAS_Y_OFFSET) * POLYGON_CANVAS_Y_STRETCH
 		
 		var polygon2d = Polygon2D.new()
@@ -77,6 +86,20 @@ func _generate_polygons():
 		polygon_collision_shape.polygon = polygon2d.polygon
 		polygon2d.add_child(polygon_static_body)
 		platforms.add_child(polygon2d)
+	
+	var max_point = Vector2(x_max + max_width, -rect_height/4)
+	var area_2D = Area2D.new()
+	var collision_shape = CollisionShape2D.new()
+
+	var rectangle_shape = RectangleShape2D.new()
+	rectangle_shape.size = Vector2(rect_width, rect_height)
+	collision_shape.shape = rectangle_shape
+	area_2D.add_child(collision_shape)
+	area_2D.set_collision_mask_value(2, true)
+	area_2D.set_collision_mask_value(1, false)
+	area_2D.body_entered.connect(_on_finished_level)
+	add_child(area_2D)
+	area_2D.global_position = max_point
 
 func play():
 	audio_stream_player.volume_db = 0
@@ -113,3 +136,6 @@ func _on_kill_zone_body_entered(body):
 	tween.tween_property(fader, "modulate", Color(1,1,1,0), 0.2)
 	tween.tween_property(audio_stream_player,"volume_db", 0, 1)
 	tween.play()
+
+func _on_finished_level(node: Node2D):
+	print("finished")
