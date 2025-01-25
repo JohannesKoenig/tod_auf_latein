@@ -1,11 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://jwlquupu6dd3"]
+[gd_scene load_steps=13 format=3 uid="uid://jwlquupu6dd3"]
 
 [ext_resource type="Script" path="res://2D/scripts/character_body_2d.gd" id="1_u7c5b"]
 [ext_resource type="Texture2D" uid="uid://c76laitpwhd8b" path="res://assets/sprites/pixil-frame-0-11.png" id="2_0ysto"]
+[ext_resource type="Texture2D" uid="uid://dv07thfnb2f0l" path="res://assets/sprites/Notenbrecht bunt.png" id="3_ek7ll"]
+[ext_resource type="Texture2D" uid="uid://x20pxlvkyj74" path="res://assets/sprites/pixilart-sprite notenbrecht bunt.png" id="4_ew6ws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5c5w"]
 atlas = ExtResource("2_0ysto")
 region = Rect2(32, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mrk0"]
+atlas = ExtResource("3_ek7ll")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u3mb"]
+atlas = ExtResource("4_ew6ws")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv2tc"]
+atlas = ExtResource("4_ew6ws")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q833s"]
+atlas = ExtResource("4_ew6ws")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut8u6"]
+atlas = ExtResource("4_ew6ws")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pnfyc"]
 animations = [{
@@ -16,10 +38,35 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mrk0")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u3mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv2tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q833s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ut8u6")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i0xg8"]
-radius = 10.0499
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rddsi"]
+size = Vector2(39, 61)
 
 [node name="player" type="Node2D"]
 
@@ -27,9 +74,10 @@ radius = 10.0499
 script = ExtResource("1_u7c5b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(49, 48)
 sprite_frames = SubResource("SpriteFrames_pnfyc")
+animation = &"new_animation_1"
+autoplay = "new_animation_1"
+frame_progress = 0.793718
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(49, 51)
-shape = SubResource("CircleShape2D_i0xg8")
+shape = SubResource("RectangleShape2D_rddsi")
