@@ -1,25 +1,26 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfodabcpoqqg0"]
 
+[ext_resource type="PackedScene" uid="uid://d28vfoe0e8e3h" path="res://3D/wall_segment.tscn" id="1_sh50d"]
 [ext_resource type="PackedScene" uid="uid://byk4sox5ju4k7" path="res://3D/painting/painting.tscn" id="1_u88pu"]
 [ext_resource type="PackedScene" uid="uid://cxo1woq3pa5ek" path="res://2D/mini_game_scene.tscn" id="2_cxkb1"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nhbt"]
+albedo_color = Color(0.335904, 0, 0.0128781, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_qy0ud"]
+material = SubResource("StandardMaterial3D_5nhbt")
 size = Vector2(12, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_76ys6"]
 size = Vector3(12, 1, 12)
 
-[sub_resource type="BoxMesh" id="BoxMesh_rrtum"]
-size = Vector3(1, 4, 12)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjo2r"]
+albedo_color = Color(0.17425, 0.0481974, 0, 1)
+roughness = 0.82
 
 [sub_resource type="BoxMesh" id="BoxMesh_hbj6g"]
+material = SubResource("StandardMaterial3D_cjo2r")
 size = Vector3(12, 1, 12)
-
-[sub_resource type="BoxMesh" id="BoxMesh_k4vxm"]
-size = Vector3(1, 2, 12)
-
-[sub_resource type="BoxMesh" id="BoxMesh_f4rjt"]
-size = Vector3(1, 2.2, 5)
 
 [node name="Room" type="Node3D"]
 
@@ -37,57 +38,90 @@ shape = SubResource("BoxShape3D_76ys6")
 
 [node name="Walls" type="Node3D" parent="."]
 
-[node name="Wall" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.51947, 1.89711, 0)
-mesh = SubResource("BoxMesh_rrtum")
-
 [node name="Wall9" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.09675, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4453, 0)
 mesh = SubResource("BoxMesh_hbj6g")
 
-[node name="Wall3" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.15877, 5.23911)
-mesh = SubResource("BoxMesh_k4vxm")
+[node name="wall" type="Node3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 0)
 
-[node name="Door" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.06324, 2.251)
-visible = false
-mesh = SubResource("BoxMesh_f4rjt")
+[node name="wall_segment" parent="Walls/wall" instance=ExtResource("1_sh50d")]
 
-[node name="Wall4" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.333, 1.063, 5.23417)
-mesh = SubResource("BoxMesh_f4rjt")
+[node name="wall_segment2" parent="Walls/wall" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="Wall5" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.333, 1.063, 5.23417)
-mesh = SubResource("BoxMesh_f4rjt")
+[node name="wall_segment4" parent="Walls/wall" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="Wall6" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.15877, -5.234)
-mesh = SubResource("BoxMesh_k4vxm")
+[node name="wall_segment5" parent="Walls/wall" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
-[node name="Door2" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.06324, -2.31323)
-visible = false
-mesh = SubResource("BoxMesh_f4rjt")
+[node name="wall_segment3" parent="Walls/wall" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
-[node name="Wall7" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.33308, 1.06324, -5.234)
-mesh = SubResource("BoxMesh_f4rjt")
+[node name="wall3" type="Node3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -5.2)
 
-[node name="Wall8" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.333, 1.063, -5.234)
-mesh = SubResource("BoxMesh_f4rjt")
+[node name="wall_segment2" parent="Walls/wall3" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="Wall2" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.519, 1.897, 0)
-mesh = SubResource("BoxMesh_rrtum")
+[node name="wall_segment4" parent="Walls/wall3" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_segment5" parent="Walls/wall3" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall_segment3" parent="Walls/wall3" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="wall_segment6" parent="Walls/wall3" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.21044, 0)
+
+[node name="wall4" type="Node3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 5.2)
+
+[node name="wall_segment2" parent="Walls/wall4" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="wall_segment6" parent="Walls/wall4" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.21044, 0)
+
+[node name="wall_segment4" parent="Walls/wall4" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_segment5" parent="Walls/wall4" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall_segment3" parent="Walls/wall4" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="wall2" type="Node3D" parent="Walls"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.2, 0, 0)
+
+[node name="wall_segment" parent="Walls/wall2" instance=ExtResource("1_sh50d")]
+
+[node name="wall_segment2" parent="Walls/wall2" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="wall_segment4" parent="Walls/wall2" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_segment5" parent="Walls/wall2" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall_segment3" parent="Walls/wall2" instance=ExtResource("1_sh50d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15827, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.158, 0)
 light_color = Color(1, 0.910121, 0.860644, 1)
 omni_range = 10.0
 
 [node name="Painting" parent="." instance=ExtResource("1_u88pu")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.996, 1.503, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.59595, 1.503, 0)
 mini_game_scene = ExtResource("2_cxkb1")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.92747, 4.2193, 0)
+spot_range = 15.7948
+spot_angle = 40.0603
