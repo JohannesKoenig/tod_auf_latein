@@ -86,6 +86,11 @@ ExitPainting={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Player"
+3d_physics/layer_2="Player3D"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

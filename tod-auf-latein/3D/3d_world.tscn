@@ -28,3 +28,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15693, 0.0309397)
 environment = SubResource("Environment_ptjjf")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_ggkf8")]
+
+[editable path="Museum"]
+[editable path="Museum/Room"]
+[editable path="Museum/Room2"]
+[editable path="Museum/Room3"]
+[editable path="Museum/Room4"]
+[editable path="Museum/Room5"]

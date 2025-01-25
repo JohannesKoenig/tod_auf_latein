@@ -24,10 +24,12 @@ func _ready():
 		area_3d.body_entered.connect(_on_area_entered)
 		area_3d.body_exited.connect(_on_area_exited)
 	
-	mini_game_scene_instance = mini_game_scene.instantiate()
-	sub_viewport.add_child(mini_game_scene_instance)
+	if mini_game_scene:
+		mini_game_scene_instance = mini_game_scene.instantiate()
+		sub_viewport.add_child(mini_game_scene_instance)
 
 	var viewport_texture = sub_viewport.get_texture()
+	viewport_material = viewport_material.duplicate(true)
 	viewport_material.set_shader_parameter("ViewportTexture", viewport_texture)
 	painting.material_overlay = viewport_material
 	

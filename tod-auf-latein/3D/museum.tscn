@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://diysw7jvds3vg"]
+[gd_scene load_steps=6 format=3 uid="uid://diysw7jvds3vg"]
 
+[ext_resource type="Script" path="res://3D/museum.gd" id="1_1i56y"]
 [ext_resource type="PackedScene" uid="uid://dfodabcpoqqg0" path="res://3D/room.tscn" id="1_liiaf"]
 [ext_resource type="PackedScene" uid="uid://dbo3w8pbto743" path="res://3D/hallway.tscn" id="2_ymr8q"]
 [ext_resource type="AudioStream" uid="uid://nv52ibvrcm1d" path="res://assets/Museum Ambience Test 2.wav" id="3_rcl47"]
@@ -8,10 +9,12 @@
 size = Vector3(3, 1, 2)
 
 [node name="Museum" type="Node3D"]
+script = ExtResource("1_1i56y")
 
 [node name="Room" parent="." instance=ExtResource("1_liiaf")]
 
 [node name="Area3D" type="Area3D" parent="Room/Painting" index="3"]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Painting/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23868e-08, -0.994071, 0.740922)
@@ -23,6 +26,9 @@ is_open = false
 [node name="Room2" parent="." instance=ExtResource("1_liiaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.6694)
 
+[node name="Painting" parent="Room2" index="3"]
+mini_game_scene = null
+
 [node name="Hallway" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.8544)
 
@@ -32,8 +38,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.429)
 [node name="Room3" parent="." instance=ExtResource("1_liiaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42.9978)
 
+[node name="Painting" parent="Room3" index="3"]
+mini_game_scene = null
+
 [node name="Room4" parent="." instance=ExtResource("1_liiaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.6672)
+
+[node name="Painting" parent="Room4" index="3"]
+mini_game_scene = null
 
 [node name="Hallway3" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -53.8523)
@@ -44,8 +56,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -75.4268)
 [node name="Room5" parent="." instance=ExtResource("1_liiaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.9957)
 
-[node name="Room6" parent="." instance=ExtResource("1_liiaf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -107.665)
+[node name="Painting" parent="Room5" index="3"]
+mini_game_scene = null
 
 [node name="Hallway5" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -96.8501)
@@ -58,3 +70,7 @@ stream = ExtResource("3_rcl47")
 autoplay = true
 
 [editable path="Room"]
+[editable path="Room2"]
+[editable path="Room3"]
+[editable path="Room4"]
+[editable path="Room5"]

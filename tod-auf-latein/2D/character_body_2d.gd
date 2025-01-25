@@ -2,29 +2,22 @@ extends CharacterBody2D
 
 
 @export var speed = 300.0
-@export var jump_velocity = -200
+@export var jump_velocity = -80
 @export var jump_timer = 0.0
 var JUMP_TIMER_FACTOR = 15
 var current_velocity = 0
 var started_jumping: bool = false
+var playing: bool = false
+
 
 func _physics_process(delta):
-	if not Events.entered_painting:
-		return 
+	if not playing:
+		return
 
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * 3
 
-	#if Input.is_action_just_pressed("Jump") and is_on_floor():
-		#velocity.y = jump_velocity
-	
-	#if (Input.is_action_pressed("Jump") and is_on_floor() && jump_timer < 0.25):
-		#current_velocity = jump_velocity * (1 + jump_timer * JUMP_TIMER_FACTOR)
-		#jump_timer += delta
-		#
-	#if (Input.is_action_pressed("Jump") and is_on_floor() && jump_timer >= 0.25):
-		#current_velocity = jump_velocity * (1 + 0.25 * JUMP_TIMER_FACTOR)
-		#jump_timer += delta
+
 	if is_on_floor():
 		jump_timer = 0.0
 		started_jumping = false
@@ -36,20 +29,11 @@ func _physics_process(delta):
 		jump_timer += delta
 		if started_jumping:
 			if jump_timer < 1:
-				current_velocity = jump_velocity
-				velocity.y = jump_velocity
+				velocity.y = jump_velocity * pow((1 - jump_timer),2) * 8
 	
 	if Input.is_action_just_released("Jump"):
 		started_jumping = false
 
-	#if (!Input.is_action_pressed("Jump") and is_on_floor()):
-		#jump_timer = 0.0
-		#current_velocity = 0
-	#print(current_velocity)
-	#if (Input.is_action_just_released("Jump") and is_on_floor()):
-		#velocity.y = current_velocity
-		#jump_timer = 0.0
-		#current_velocity = 0
 		
 	velocity.x = speed
 	

@@ -7,6 +7,7 @@ radius = 0.25
 height = 1.5
 
 [node name="3DCharacterController" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_mmrkk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

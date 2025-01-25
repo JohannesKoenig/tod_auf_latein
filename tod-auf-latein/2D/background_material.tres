@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://drhdmapb0776k"]
+
+[ext_resource type="Shader" uid="uid://dbpqh6wc2c68l" path="res://2D/background_texture_shader_v2.tres" id="1_rcafl"]
+
+[sub_resource type="Gradient" id="Gradient_6y8e0"]
+offsets = PackedFloat32Array(0.778689, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxk5l"]
+gradient = SubResource("Gradient_6y8e0")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lf7bo"]
+noise_type = 0
+frequency = 0.0045
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_no87t"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_lf7bo")
+
+[resource]
+shader = ExtResource("1_rcafl")
+shader_parameter/BaseColorTint = Color(0.0246791, 0.449843, 0.568046, 1)
+shader_parameter/ColorTint = Color(0.168045, 0.674785, 0.999998, 1)
+shader_parameter/NoiseRamp = 0.343
+shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_no87t")
+shader_parameter/BlendTexture = SubResource("GradientTexture2D_nxk5l")
