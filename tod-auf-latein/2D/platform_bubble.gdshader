@@ -13,6 +13,8 @@ uniform vec4 background_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform vec2 grid_vec = vec2(2.0, 2.0); //How to repeat the gradient
 uniform vec2 grid_bubbles = vec2(20.0, 10.0); //How many bubbles; can also make them oval
 
+
+
 vec2 random(vec2 uv) {
 	return vec2(fract(sin(dot(uv.xy,
 		vec2(12.9898,78.233))) * 43758.5453123));
@@ -50,5 +52,5 @@ void fragment() {
 	//You can change the float values here to modify the bubbles; don't ask for a mathematical explanation, I don't know
 	vec3 color = mix(vec3(worley) * multi_color.rgb * 3.0, background_color.rgb , smoothstep(0.4, 0.5, worley * 1.5)); //The weight controls the bubbles' rim and size
 	COLOR.rgb = color;
-	COLOR.a = color.r; //Preserve the original texture's transparency
+	COLOR.a = 0.7; //Preserve the original texture's transparency
 }

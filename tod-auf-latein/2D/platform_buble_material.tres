@@ -12,8 +12,8 @@ fill_to = Vector2(0.0833333, 0.0510753)
 
 [resource]
 shader = ExtResource("1_wk7m5")
-shader_parameter/speed = 0.7
+shader_parameter/speed = 0.9
 shader_parameter/background_color = Vector4(0, 0, 0, 1)
 shader_parameter/grid_vec = Vector2(2, 2)
-shader_parameter/grid_bubbles = Vector2(10, 5)
+shader_parameter/grid_bubbles = Vector2(5, 3)
 shader_parameter/gradient = SubResource("GradientTexture2D_cakgp")
