@@ -3,17 +3,20 @@
 [ext_resource type="Shader" path="res://2D/platform_bubble.gdshader" id="1_wk7m5"]
 
 [sub_resource type="Gradient" id="Gradient_vf6g3"]
-offsets = PackedFloat32Array(0, 0.491803, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.491803, 0.491803, 0.491803, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.190299, 0.429104, 0.645522, 0.843284, 1)
+colors = PackedColorArray(1, 1, 1, 0.313726, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.560784, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cakgp"]
 gradient = SubResource("Gradient_vf6g3")
-fill_to = Vector2(0.0833333, 0.0510753)
+fill_from = Vector2(0.5, 0.2)
+fill_to = Vector2(0.5, 0.7)
+metadata/_snap_enabled = true
 
 [resource]
 shader = ExtResource("1_wk7m5")
 shader_parameter/speed = 0.9
-shader_parameter/background_color = Vector4(0, 0, 0, 1)
+shader_parameter/background_color = Vector4(1, 1, 1, 1)
 shader_parameter/grid_vec = Vector2(2, 2)
-shader_parameter/grid_bubbles = Vector2(5, 3)
+shader_parameter/grid_bubbles = Vector2(5, 5)
+shader_parameter/color = Vector4(1, 1, 1, 1)
 shader_parameter/gradient = SubResource("GradientTexture2D_cakgp")
