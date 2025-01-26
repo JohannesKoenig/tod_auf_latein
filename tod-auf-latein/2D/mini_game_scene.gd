@@ -8,6 +8,7 @@ class_name MiniGameScene extends Node2D
 
 @export var polygon_material: Material
 @export var polygon_texture: Texture
+@export var polygon_color: Color = Color.WHITE
 
 @onready var bubble_particles: PackedScene = preload("res://2D/platform_particles.tscn")
 
@@ -15,9 +16,14 @@ class_name MiniGameScene extends Node2D
 @onready var sprite_2d_forest = $ParallaxBackground/ParallaxLayer2/Sprite2D
 @onready var kill_zone = $KillZone
 
+@onready var gpu_particles_2d = $CharacterBody2D/GPUParticles2D
+
+
+signal playing_changed(value: bool)
 
 var rect_height = 10000
 var rect_width = 200
+var ROUNDING: int = 10
 
 var _platform_definitions: Array
 var _total_length: float
@@ -30,6 +36,7 @@ var playing: bool = false:
 	set(value):
 		playing = value
 		character_body_2d.playing = value
+		playing_changed.emit(value)
 
 @onready var platforms = $Platforms
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
@@ -41,11 +48,15 @@ var _player_start_position: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	playing_changed.connect(_on_playing_changed)
+	_on_playing_changed(playing)
 	sprite_2d.material = background_material
 	sprite_2d_forest.texture = background_texture
 	sprite_2d_forest.material = background_forest_material
 	audio_stream_player.stream = audio_stream
 	audio_stream_player.volume_db = 0.0
+
+	gpu_particles_2d.modulate = polygon_color
 	_player_start_position = character_body_2d.position
 	if FileAccess.file_exists(platforms_definition_file_path):
 		var file_content = FileAccess.get_file_as_string(platforms_definition_file_path)
@@ -76,24 +87,40 @@ func _generate_polygons():
 		y_max = max(y_max, y)
 		var polygon2d = Polygon2D.new()
 		polygon2d.color = Color.RED
-		polygon2d.material = polygon_material
+		polygon2d.material = polygon_material.duplicate()
+		polygon2d.material.set_shader_parameter("color", polygon_color)
 		polygon2d.texture = polygon_texture
 		polygon2d.texture_scale = Vector2(10,10)
 		polygon2d.polygon = [
-			Vector2(x,y),
-			Vector2(x + width, y),
-			Vector2(x + width, y + height),
-			Vector2(x, y + height)
+			Vector2(x,y + ROUNDING),
+			#Vector2(x + ROUNDING,y + ROUNDING),
+			Vector2(x + ROUNDING,y),
+			
+			Vector2(x + width - ROUNDING, y),
+			#Vector2(x + width - ROUNDING, y + ROUNDING),
+			Vector2(x + width, y + ROUNDING),
+
+			Vector2(x + width, y + height - ROUNDING),
+			#Vector2(x + width - ROUNDING, y + height - ROUNDING),
+			Vector2(x + width - ROUNDING, y + height ),
+			
+			Vector2(x + ROUNDING, y + height ),
+			#Vector2(x + ROUNDING, y + height - ROUNDING),
+			Vector2(x , y + height - ROUNDING),
+			
 		]
 		var polygon_static_body: StaticBody2D = StaticBody2D.new()
 		var polygon_collision_shape: CollisionPolygon2D = CollisionPolygon2D.new()
 		polygon_static_body.add_child(polygon_collision_shape)
 		polygon_collision_shape.polygon = polygon2d.polygon
-		var bubble_particles_instance: GPUParticles2D = bubble_particles.instantiate()
+		var bubble_particles_instance: PlatformParticles = bubble_particles.instantiate()
 		bubble_particles_instance.process_material = bubble_particles_instance.process_material.duplicate(true)
 		bubble_particles_instance.process_material.emission_box_extents.x = width / 2
 		polygon2d.add_child(bubble_particles_instance)
 		bubble_particles_instance.position = Vector2(x + width / 2,y + height)
+		playing_changed.connect(bubble_particles_instance.on_playing_changed)
+		bubble_particles_instance.modulate = polygon_color
+		bubble_particles_instance.on_playing_changed(playing)
 		polygon2d.add_child(polygon_static_body)
 		platforms.add_child(polygon2d)
 	kill_zone.position.y = y_max
@@ -151,3 +178,7 @@ func _on_kill_zone_body_entered(body):
 
 func _on_finished_level(node: Node2D):
 	print("finished")
+
+func _on_playing_changed(value: bool):
+	gpu_particles_2d.emitting = value
+	

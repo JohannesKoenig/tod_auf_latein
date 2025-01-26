@@ -18,6 +18,12 @@ adjustment_brightness = 1.71
 
 [node name="Museum" parent="." instance=ExtResource("1_0et28")]
 
+[node name="Painting" parent="Museum/Room2" index="3"]
+platform_color = Color(0, 0.175033, 0.470187, 1)
+
+[node name="Painting" parent="Museum/Room3" index="3"]
+platform_color = Color(0.453425, 0.134846, 0, 1)
+
 [node name="3DCharacterController" parent="." instance=ExtResource("2_vn1lp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344901, 0)
 
