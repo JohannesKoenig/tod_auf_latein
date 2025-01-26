@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1psbolj24v5a"]
+
+[ext_resource type="Script" path="res://3D/progress_light.gd" id="1_7b3r7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01wk4"]
+shading_mode = 0
+albedo_color = Color(0.866048, 0, 0.15739, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_24cv1"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y3w5y"]
+size = Vector3(0.1, 1, 0.1)
+
+[node name="ProgressLight" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.33508, 0)
+material_override = SubResource("StandardMaterial3D_01wk4")
+mesh = SubResource("BoxMesh_24cv1")
+script = ExtResource("1_7b3r7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431208, 0)
+mesh = SubResource("BoxMesh_y3w5y")

@@ -11,6 +11,8 @@ class_name Painting extends Node3D
 @export var background_texture: Texture = preload("res://assets/background_forest_trees.png")
 @export var platform_color: Color = Color.WHITE
 
+@export var level_number: int = 1
+
 var mini_game_scene_instance: MiniGameScene
 @onready var painting = $Painting
 @onready var sub_viewport = $SubViewport
@@ -44,7 +46,7 @@ func _ready():
 		mini_game_scene_instance.background_material = background_material
 		mini_game_scene_instance.background_texture = background_texture
 		mini_game_scene_instance.polygon_color = platform_color
-		mini_game_scene_instance.finished_level.connect(func(): finished_level.emit())
+		mini_game_scene_instance.finished_level.connect(_finished_level)
 		sub_viewport.add_child(mini_game_scene_instance)
 
 	var viewport_texture = sub_viewport.get_texture()
@@ -85,3 +87,6 @@ func _play_mini_game(playing: bool):
 		if mini_game_scene_instance:
 			mini_game_scene_instance.stop()
 	
+func _finished_level():
+	finished_level.emit()
+	Events.finish_level(level_number)

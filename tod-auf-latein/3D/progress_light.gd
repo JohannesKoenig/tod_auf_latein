@@ -1,7 +1,8 @@
-extends MeshInstance3D
+class_name ProgressLight extends MeshInstance3D
 
 var duplicate_material: StandardMaterial3D
 
+var finished: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,4 +12,10 @@ func _ready():
 
 
 func level_finished():
-	duplicate_material.albedo_color = Color.from_string("009e53", Color.AQUAMARINE)
+	if not finished:
+		duplicate_material.albedo_color = Color.from_string("009e53", Color.AQUAMARINE)
+		finished = true
+
+
+func _on_painting_finished_level():
+	pass # Replace with function body.

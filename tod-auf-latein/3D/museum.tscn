@@ -1,4 +1,4 @@
-[gd_scene load_steps=247 format=3 uid="uid://diysw7jvds3vg"]
+[gd_scene load_steps=248 format=3 uid="uid://diysw7jvds3vg"]
 
 [ext_resource type="Script" path="res://3D/museum.gd" id="1_1i56y"]
 [ext_resource type="PackedScene" uid="uid://dfodabcpoqqg0" path="res://3D/room.tscn" id="1_liiaf"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://br6k30fihaors" path="res://assets/Thema A und A' Summe.wav" id="8_otlmm"]
 [ext_resource type="AudioStream" uid="uid://heh0ix6vqixu" path="res://assets/Variation 3 Summe.wav" id="10_dayx6"]
 [ext_resource type="AudioStream" uid="uid://cqlhfmhid46ec" path="res://assets/Variation 4 Summe.wav" id="10_e4fv0"]
+[ext_resource type="PackedScene" uid="uid://btael8354lf5l" path="res://3D/progress_indicator.tscn" id="12_5teau"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2pvpx"]
 input_name = "uv"
@@ -2173,6 +2174,7 @@ audio_stream = ExtResource("4_ag6fb")
 background_material = SubResource("ShaderMaterial_1nt3b")
 background_forest_material = SubResource("ShaderMaterial_lpiow")
 background_texture = ExtResource("6_cmia8")
+level_number = 2
 
 [node name="SpotLight3D" parent="Room2" index="4"]
 light_color = Color(1, 0.892733, 0.978513, 1)
@@ -2193,6 +2195,7 @@ audio_stream = ExtResource("8_hgu6q")
 background_material = SubResource("ShaderMaterial_ttyh0")
 background_forest_material = SubResource("ShaderMaterial_5dgis")
 background_texture = ExtResource("6_cycqg")
+level_number = 3
 
 [node name="Room4" parent="." instance=ExtResource("1_liiaf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.6672)
@@ -2203,6 +2206,7 @@ bubbles_definition_file_path = "res://assets/bubble_json/level4_basic_pitch.json
 audio_stream = ExtResource("10_dayx6")
 background_material = SubResource("ShaderMaterial_10ld2")
 background_forest_material = SubResource("ShaderMaterial_u2tk8")
+level_number = 4
 
 [node name="Hallway3" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -53.8523)
@@ -2219,16 +2223,26 @@ bubbles_definition_file_path = "res://assets/bubble_json/level5_basic_pitch.json
 audio_stream = ExtResource("10_e4fv0")
 background_material = SubResource("ShaderMaterial_g7vyh")
 background_forest_material = SubResource("ShaderMaterial_5jfeh")
+level_number = 5
+
+[node name="DoubleDoor2" parent="Room5/Doors" index="1"]
+is_open = false
+
+[node name="ProgressIndicator" parent="Room5" instance=ExtResource("12_5teau")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 3.31201, -4.65759)
 
 [node name="Hallway5" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -96.8501)
 
-[node name="Hallway6" parent="." instance=ExtResource("2_ymr8q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -118.425)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_rcl47")
 autoplay = true
+
+[connection signal="finished_level" from="Room/Painting" to="Room/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Room2/Painting" to="Room2/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Room3/Painting" to="Room3/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Room4/Painting" to="Room4/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Room5/Painting" to="Room5/ProgressLight" method="_on_painting_finished_level"]
 
 [editable path="Room"]
 [editable path="Room/Painting"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://btael8354lf5l"]
+
+[ext_resource type="Script" path="res://3D/progress_indicator.gd" id="1_p8dkv"]
+[ext_resource type="PackedScene" uid="uid://d1psbolj24v5a" path="res://3D/progress_light.tscn" id="2_6thum"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xkdut"]
+size = Vector3(5, 1, 1)
+
+[node name="ProgressIndicator" type="Node3D"]
+script = ExtResource("1_p8dkv")
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="Lights" type="Node3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.32807, 0)
+
+[node name="ProgressLight3" parent="Pivot/Lights" instance=ExtResource("2_6thum")]
+skeleton = NodePath("../../..")
+
+[node name="ProgressLight2" parent="Pivot/Lights" instance=ExtResource("2_6thum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.869267, 3.33508, 0)
+skeleton = NodePath("../../..")
+
+[node name="ProgressLight4" parent="Pivot/Lights" instance=ExtResource("2_6thum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.869, 3.335, 0)
+skeleton = NodePath("../../..")
+
+[node name="ProgressLight5" parent="Pivot/Lights" instance=ExtResource("2_6thum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.738, 3.335, 0)
+skeleton = NodePath("../../..")
+
+[node name="ProgressLight" parent="Pivot/Lights" instance=ExtResource("2_6thum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.738, 3.335, 0)
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.544933)
+mesh = SubResource("BoxMesh_xkdut")

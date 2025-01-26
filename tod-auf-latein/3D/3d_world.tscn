@@ -1,11 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://b65utuys8hgq"]
+[gd_scene load_steps=17 format=3 uid="uid://b65utuys8hgq"]
 
 [ext_resource type="PackedScene" uid="uid://diysw7jvds3vg" path="res://3D/museum.tscn" id="1_0et28"]
+[ext_resource type="Script" path="res://3D/3d_world.gd" id="1_gepg6"]
 [ext_resource type="PackedScene" uid="uid://bky1f36svx8a1" path="res://3D/3d_character_controller.tscn" id="2_vn1lp"]
 [ext_resource type="PackedScene" uid="uid://d28vfoe0e8e3h" path="res://3D/wall_segment.tscn" id="2_wup62"]
 [ext_resource type="PackedScene" uid="uid://v7c0tq87ktjp" path="res://3D/double_door.tscn" id="3_fht0h"]
 [ext_resource type="PackedScene" uid="uid://bbrac0riwlr6i" path="res://3D/gui/gui_3d.tscn" id="3_ggkf8"]
 [ext_resource type="PackedScene" uid="uid://dbo3w8pbto743" path="res://3D/hallway.tscn" id="5_dx0hn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wu46"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_dddeu"]
+size = Vector3(4, 6, 4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t5klt"]
+data = PackedVector3Array(-2, 3, 2, 2, 3, 2, -2, -3, 2, 2, 3, 2, 2, -3, 2, -2, -3, 2, 2, 3, -2, -2, 3, -2, 2, -3, -2, -2, 3, -2, -2, -3, -2, 2, -3, -2, 2, 3, 2, 2, 3, -2, 2, -3, 2, 2, 3, -2, 2, -3, -2, 2, -3, 2, -2, 3, -2, -2, 3, 2, -2, -3, -2, -2, 3, 2, -2, -3, 2, -2, -3, -2, 2, 3, 2, -2, 3, 2, 2, 3, -2, -2, 3, 2, -2, 3, -2, 2, 3, -2, -2, -3, 2, 2, -3, 2, -2, -3, -2, 2, -3, 2, 2, -3, -2, -2, -3, -2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baj5f"]
 albedo_color = Color(0.335904, 0, 0.0128781, 1)
@@ -36,6 +46,7 @@ adjustment_enabled = true
 adjustment_brightness = 1.71
 
 [node name="3dWorld" type="Node3D"]
+script = ExtResource("1_gepg6")
 
 [node name="Museum" parent="." instance=ExtResource("1_0et28")]
 
@@ -47,6 +58,17 @@ platform_color = Color(0, 0.175033, 0.470187, 1)
 
 [node name="Painting" parent="Museum/Room3" index="3"]
 platform_color = Color(0.453425, 0.134846, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Museum/Hallway5" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14095, -6.1448)
+material_override = SubResource("StandardMaterial3D_6wu46")
+mesh = SubResource("BoxMesh_dddeu")
+
+[node name="Area3D" type="Area3D" parent="Museum/Hallway5/MeshInstance3D"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Museum/Hallway5/MeshInstance3D/Area3D"]
+shape = SubResource("ConcavePolygonShape3D_t5klt")
 
 [node name="Room6" type="Node3D" parent="Museum"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.7187)
@@ -166,6 +188,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15693, 0.0309397)
 environment = SubResource("Environment_ptjjf")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_ggkf8")]
+
+[connection signal="finished_level" from="Museum/Room/Painting" to="Museum/Room/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Museum/Room2/Painting" to="Museum/Room2/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Museum/Room3/Painting" to="Museum/Room3/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Museum/Room4/Painting" to="Museum/Room4/ProgressLight" method="level_finished"]
+[connection signal="finished_level" from="Museum/Room5/Painting" to="Museum/Room5/ProgressLight" method="_on_painting_finished_level"]
+[connection signal="body_entered" from="Museum/Hallway5/MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Museum"]
 [editable path="Museum/Room"]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfodabcpoqqg0"]
+[gd_scene load_steps=11 format=3 uid="uid://dfodabcpoqqg0"]
 
 [ext_resource type="PackedScene" uid="uid://d28vfoe0e8e3h" path="res://3D/wall_segment.tscn" id="1_sh50d"]
 [ext_resource type="PackedScene" uid="uid://byk4sox5ju4k7" path="res://3D/painting/painting.tscn" id="1_u88pu"]
 [ext_resource type="PackedScene" uid="uid://cxo1woq3pa5ek" path="res://2D/mini_game_scene.tscn" id="2_cxkb1"]
 [ext_resource type="PackedScene" uid="uid://v7c0tq87ktjp" path="res://3D/double_door.tscn" id="4_ori7p"]
-[ext_resource type="Script" path="res://3D/progress_light.gd" id="5_sgoli"]
+[ext_resource type="PackedScene" uid="uid://d1psbolj24v5a" path="res://3D/progress_light.tscn" id="5_5exoe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baj5f"]
 albedo_color = Color(0.335904, 0, 0.0128781, 1)
@@ -23,16 +23,6 @@ roughness = 0.82
 [sub_resource type="BoxMesh" id="BoxMesh_hbj6g"]
 material = SubResource("StandardMaterial3D_5tvb3")
 size = Vector3(12, 1, 12)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01wk4"]
-shading_mode = 0
-albedo_color = Color(0.866048, 0, 0.15739, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_24cv1"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_y3w5y"]
-size = Vector3(0.1, 1, 0.1)
 
 [node name="Room" type="Node3D"]
 
@@ -148,14 +138,4 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 [node name="DoubleDoor2" parent="Doors" instance=ExtResource("4_ori7p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4.896)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.33508, 0)
-material_override = SubResource("StandardMaterial3D_01wk4")
-mesh = SubResource("BoxMesh_24cv1")
-script = ExtResource("5_sgoli")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431208, 0)
-mesh = SubResource("BoxMesh_y3w5y")
-
-[connection signal="finished_level" from="Painting" to="MeshInstance3D" method="level_finished"]
+[node name="ProgressLight" parent="." instance=ExtResource("5_5exoe")]
