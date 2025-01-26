@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciyus4vv6glao"]
+
+[ext_resource type="PackedScene" uid="uid://cw8aa6xb8o251" path="res://assets/schubert.glb" id="1_kww77"]
+
+[node name="schubert" instance=ExtResource("1_kww77")]
