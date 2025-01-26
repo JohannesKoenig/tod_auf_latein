@@ -9,45 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dqqw4iso65x8j" path="res://assets/background_forest.png" id="6_w1qqq"]
 [ext_resource type="Texture2D" uid="uid://e00aqdautd1f" path="res://assets/background_forest_trees.png" id="7_aq4ml"]
 [ext_resource type="Material" uid="uid://ccg5m020rn7p8" path="res://2D/background_forest_material.tres" id="8_rt8ef"]
-[ext_resource type="PackedScene" uid="uid://bb105ftdmo6p5" path="res://2D/platform_particles.tscn" id="10_i2jmo"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfl1j"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xoumn"]
-atlas = ExtResource("5_ke07w")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4fvpq"]
-atlas = ExtResource("5_ke07w")
-region = Rect2(100, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aybr8"]
-atlas = ExtResource("5_ke07w")
-region = Rect2(200, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ok545"]
-atlas = ExtResource("5_ke07w")
-region = Rect2(300, 0, 100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ki8g4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xoumn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4fvpq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aybr8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ok545")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="Curve" id="Curve_yavej"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.613594, 0.0, 0, 0]
@@ -87,6 +48,44 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 metadata/_snap_enabled = true
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfl1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoumn"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fvpq"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aybr8"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok545"]
+atlas = ExtResource("5_ke07w")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki8g4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoumn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fvpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aybr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok545")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="Gradient" id="Gradient_hh4oa"]
 offsets = PackedFloat32Array(0, 0.993506)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -113,6 +112,13 @@ position = Vector2(0, -51)
 collision_layer = 2
 script = ExtResource("2_0qk4n")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CharacterBody2D"]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_avg2d")
+texture = SubResource("GradientTexture2D_5otep")
+randomness = 1.0
+fixed_fps = 60
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_cfl1j")
 
@@ -121,13 +127,6 @@ position = Vector2(5, -6)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ki8g4")
 autoplay = "default"
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="CharacterBody2D"]
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_avg2d")
-texture = SubResource("GradientTexture2D_5otep")
-randomness = 1.0
-fixed_fps = 60
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(400, 0)
@@ -179,7 +178,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(0, 236)
 shape = SubResource("WorldBoundaryShape2D_nkq3x")
-
-[node name="PlatformParticles" parent="." instance=ExtResource("10_i2jmo")]
 
 [connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]

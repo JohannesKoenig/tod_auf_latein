@@ -7,7 +7,7 @@ class_name Painting extends Node3D
 @export var background_material: Material
 @export var background_forest_material: Material
 @export var background_texture: Texture = preload("res://assets/background_forest_trees.png")
-
+@export var platform_color: Color = Color.WHITE
 
 var mini_game_scene_instance: MiniGameScene
 @onready var painting = $Painting
@@ -38,6 +38,7 @@ func _ready():
 		mini_game_scene_instance.background_forest_material = background_forest_material
 		mini_game_scene_instance.background_material = background_material
 		mini_game_scene_instance.background_texture = background_texture
+		mini_game_scene_instance.polygon_color = platform_color
 		sub_viewport.add_child(mini_game_scene_instance)
 
 	var viewport_texture = sub_viewport.get_texture()

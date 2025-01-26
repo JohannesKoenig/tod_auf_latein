@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb105ftdmo6p5"]
+[gd_scene load_steps=7 format=3 uid="uid://bb105ftdmo6p5"]
+
+[ext_resource type="Script" path="res://2D/platform_particles.gd" id="1_d47bb"]
 
 [sub_resource type="Curve" id="Curve_r277x"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.221854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -28,6 +30,8 @@ fill_to = Vector2(1, 0.5)
 metadata/_snap_enabled = true
 
 [node name="PlatformParticles" type="GPUParticles2D"]
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_rvkf0")
 texture = SubResource("GradientTexture2D_or0ix")
 lifetime = 4.0
+script = ExtResource("1_d47bb")
