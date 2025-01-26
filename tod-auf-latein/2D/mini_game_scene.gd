@@ -164,7 +164,6 @@ func _generate_polygons():
 	area_2D.global_position = max_point
 
 func _generate_bubbles():
-	print("bubblehenlo")
 	$Bubbles.modulate = polygon_color
 	for bubble in _bubble_definitions:
 		var new_bubble = bubble_2d.duplicate()
@@ -227,5 +226,3 @@ func _on_playing_changed(value: bool):
 	
 func _on_popped():
 	points += 1
-	
-	print(points)

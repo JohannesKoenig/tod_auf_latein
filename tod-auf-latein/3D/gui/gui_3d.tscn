@@ -1,20 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbrac0riwlr6i"]
+[gd_scene load_steps=4 format=3 uid="uid://bbrac0riwlr6i"]
 
 [ext_resource type="Script" path="res://3D/gui/gui_3d.gd" id="1_aksot"]
-[ext_resource type="Texture2D" uid="uid://b3cgc06p8a1m1" path="res://assets/icon.svg" id="2_yxuw0"]
+[ext_resource type="Texture2D" uid="uid://1qhk0pi1iclu" path="res://assets/input_2d_game_button.png" id="2_utn1r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3e0um"]
+bg_color = Color(0.875456, 0.875457, 0.875456, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Gui_3D" type="CanvasLayer"]
 script = ExtResource("1_aksot")
 
-[node name="ActivateIcon" type="TextureRect" parent="."]
-visible = false
+[node name="Panel" type="Panel" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -128.0
-offset_top = -128.0
+offset_left = -170.0
+offset_top = -170.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("2_yxuw0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3e0um")
+
+[node name="ActivateIcon" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -143.0
+offset_right = -17.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_utn1r")

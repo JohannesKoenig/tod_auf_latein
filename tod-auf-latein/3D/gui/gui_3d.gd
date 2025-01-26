@@ -1,6 +1,7 @@
 class_name Gui_3D extends CanvasLayer
 
 @onready var activate_icon = $ActivateIcon
+@onready var panel = $Panel
 
 func _ready():
 	Events.active_painting_changed.connect(_on_active_painting_changed)
@@ -8,6 +9,6 @@ func _ready():
 
 func _on_active_painting_changed( painting: Painting):
 	if painting != null:
-		activate_icon.visible = true
+		panel.visible = true
 	else:
-		activate_icon.visible = false
+		panel.visible = false
