@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cxo1woq3pa5ek"]
+[gd_scene load_steps=25 format=3 uid="uid://cxo1woq3pa5ek"]
 
 [ext_resource type="Script" path="res://2D/mini_game_scene.gd" id="1_kpmty"]
 [ext_resource type="Script" path="res://2D/character_body_2d.gd" id="2_0qk4n"]
 [ext_resource type="Material" uid="uid://debyk54ofbgq0" path="res://2D/platform_buble_material.tres" id="2_yo1vo"]
+[ext_resource type="PackedScene" uid="uid://dd4cjqmn225he" path="res://2D/bubble.tscn" id="4_n7hpj"]
 [ext_resource type="Texture2D" uid="uid://csyqxbray62ym" path="res://assets/Holde_Maid.png" id="5_ke07w"]
 [ext_resource type="AudioStream" uid="uid://br6k30fihaors" path="res://assets/Thema A und A' Summe.wav" id="5_qj2wn"]
 [ext_resource type="Material" uid="uid://drhdmapb0776k" path="res://2D/background_material.tres" id="6_kxc26"]
@@ -104,6 +105,12 @@ polygon_texture = ExtResource("6_w1qqq")
 
 [node name="Platforms" type="Node2D" parent="."]
 material = ExtResource("2_yo1vo")
+
+[node name="Bubbles" type="Node2D" parent="."]
+
+[node name="Bubble" parent="." instance=ExtResource("4_n7hpj")]
+position = Vector2(-614, 222)
+scale = Vector2(2, 2)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 
