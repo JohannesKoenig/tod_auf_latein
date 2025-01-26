@@ -24,6 +24,7 @@ class_name MiniGameScene extends Node2D
 
 
 signal playing_changed(value: bool)
+signal finished_level
 
 var rect_height = 10000
 var rect_width = 200
@@ -208,7 +209,7 @@ func _on_kill_zone_body_entered(body):
 	set_bubbles_visible()
 
 func _on_finished_level(node: Node2D):
-	print("finished")
+	finished_level.emit()
 
 func _on_playing_changed(value: bool):
 	gpu_particles_2d.emitting = value

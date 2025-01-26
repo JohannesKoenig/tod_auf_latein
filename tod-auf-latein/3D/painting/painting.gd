@@ -17,6 +17,8 @@ var mini_game_scene_instance: MiniGameScene
 var active: bool = false
 var entered: bool = false
 
+signal finished_level
+
 var area_3d: Area3D:
 	set(value):
 		if area_3d != value:
@@ -42,6 +44,7 @@ func _ready():
 		mini_game_scene_instance.background_material = background_material
 		mini_game_scene_instance.background_texture = background_texture
 		mini_game_scene_instance.polygon_color = platform_color
+		mini_game_scene_instance.finished_level.connect(func(): finished_level.emit())
 		sub_viewport.add_child(mini_game_scene_instance)
 
 	var viewport_texture = sub_viewport.get_texture()
