@@ -1,6 +1,9 @@
 class_name MiniGameScene extends Node2D
 
-@export var points = 0
+@export var points = 0:
+	set(value):
+		points = value
+		counter_changed.emit(value)
 @export var platforms_definition_file_path: String = "res://assets/platforms.json"
 @export var bubbles_definition_file_path: String = "res://assets/bubble_json/level1_basic_pitch.json"
 
@@ -22,6 +25,7 @@ class_name MiniGameScene extends Node2D
 
 @onready var gpu_particles_2d = $CharacterBody2D/GPUParticles2D
 
+signal counter_changed(value: int)
 
 signal playing_changed(value: bool)
 signal finished_level
@@ -176,6 +180,7 @@ func play():
 	audio_stream_player.play()
 	playing = true
 	set_bubbles_visible()
+	points = 0
 
 func set_bubbles_visible():
 	for bubble in $Bubbles.get_children():
@@ -212,6 +217,7 @@ func _on_kill_zone_body_entered(body):
 	tween.tween_property(audio_stream_player,"volume_db", 0, 1)
 	tween.play()
 	set_bubbles_visible()
+	points = 0
 
 func _on_finished_level(node: Node2D):
 	finished_level.emit()
