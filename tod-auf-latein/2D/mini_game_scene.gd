@@ -71,6 +71,7 @@ func _ready():
 		_total_length = dict["total_length"]
 		_platform_definitions = dict["platforms"]
 		_generate_polygons()
+		character_body_2d.position = _player_start_position
 	
 	if FileAccess.file_exists(bubbles_definition_file_path):
 		var file_content = FileAccess.get_file_as_string(bubbles_definition_file_path)
@@ -89,17 +90,21 @@ func _generate_polygons():
 	
 	var max_width = -INF
 	var y_max = -INF
-	for platform_definition in _platform_definitions:
+	for index in range(len(_platform_definitions)):
+		var platform_definition = _platform_definitions[index]
+			
 		var width = platform_definition["w"] * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
 		var height = POLYGON_HEIGHT
 		var x = platform_definition["x"] * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
+		var y = (platform_definition["y"] + POLYGON_CANVAS_Y_OFFSET) * POLYGON_CANVAS_Y_STRETCH
+		if index == 0:
+			_player_start_position.y = y - 20
+		y_max = max(y_max, y)
 		
 		var new_max = max(x, x_max)
 		if new_max > x_max:
 			max_width = max(max_width, width)
 			x_max = new_max
-		var y = (platform_definition["y"] + POLYGON_CANVAS_Y_OFFSET) * POLYGON_CANVAS_Y_STRETCH
-		y_max = max(y_max, y)
 		var polygon2d = Polygon2D.new()
 		polygon2d.color = Color.RED
 		polygon2d.material = polygon_material.duplicate()
