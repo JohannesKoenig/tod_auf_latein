@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://4yv88t8w0qwg"
+path.s3tc="res://.godot/imported/schubert_Schubert_Albedo.png-636698a83cf7dd25c4962c4e21d6cceb.s3tc.ctex"
+path.etc2="res://.godot/imported/schubert_Schubert_Albedo.png-636698a83cf7dd25c4962c4e21d6cceb.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "06f2a4b526ad22eba984f2a3c1a933e4"
+}
+
+[deps]
+
+source_file="res://assets/schubert_Schubert_Albedo.png"
+dest_files=["res://.godot/imported/schubert_Schubert_Albedo.png-636698a83cf7dd25c4962c4e21d6cceb.s3tc.ctex", "res://.godot/imported/schubert_Schubert_Albedo.png-636698a83cf7dd25c4962c4e21d6cceb.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
