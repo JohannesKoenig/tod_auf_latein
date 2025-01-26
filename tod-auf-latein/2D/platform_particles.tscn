@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb105ftdmo6p5"]
+
+[sub_resource type="Curve" id="Curve_r277x"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.221854, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uask1"]
+curve = SubResource("Curve_r277x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rvkf0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_uask1")
+
+[sub_resource type="Gradient" id="Gradient_tvm7o"]
+offsets = PackedFloat32Array(0, 0.944805, 0.993506)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_or0ix"]
+gradient = SubResource("Gradient_tvm7o")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[node name="PlatformParticles" type="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_rvkf0")
+texture = SubResource("GradientTexture2D_or0ix")
+lifetime = 4.0

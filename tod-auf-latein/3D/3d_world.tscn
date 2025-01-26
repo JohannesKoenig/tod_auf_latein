@@ -31,6 +31,7 @@ environment = SubResource("Environment_ptjjf")
 
 [editable path="Museum"]
 [editable path="Museum/Room"]
+[editable path="Museum/Room/Painting"]
 [editable path="Museum/Room2"]
 [editable path="Museum/Room3"]
 [editable path="Museum/Room4"]

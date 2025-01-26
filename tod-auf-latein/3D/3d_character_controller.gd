@@ -26,7 +26,7 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Back")
 	var look_dir = Input.get_vector("TurnLeft", "TurnRight", "LookUp", "LookDown")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var rotation_3D = Vector3(look_dir.y, look_dir.x , 0).normalized() * Vector3(1,2,1)
+	var rotation_3D = Vector3(look_dir.y, look_dir.x , 0).normalized() * max(1, Vector3(look_dir.y, look_dir.x , 0).length()) * Vector3(1,2,1)
 	rotation -= rotation_3D * delta
 	if direction:
 		velocity.x = direction.x * SPEED
