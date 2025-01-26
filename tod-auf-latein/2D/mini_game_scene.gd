@@ -2,7 +2,7 @@ class_name MiniGameScene extends Node2D
 
 @export var points = 0
 @export var platforms_definition_file_path: String = "res://assets/platforms.json"
-@export var bubbles_definition_file_path: String = "res://assets/variation_2_bubbles.json"
+@export var bubbles_definition_file_path: String = "res://assets/bubble_json/level1_basic_pitch.json"
 
 @export var audio_stream: AudioStream
 @export var background_material: Material
@@ -153,19 +153,26 @@ func _generate_polygons():
 	area_2D.global_position = max_point
 
 func _generate_bubbles():
+	print("bubblehenlo")
+	$Bubbles.modulate = polygon_color
 	for bubble in _bubble_definitions:
 		var new_bubble = bubble_2d.duplicate()
 		var x = bubble["x"] * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
-		var y = (bubble["y"] + POLYGON_CANVAS_Y_OFFSET) * POLYGON_CANVAS_Y_STRETCH
+		var y = (bubble["y"] + POLYGON_CANVAS_Y_OFFSET) * POLYGON_CANVAS_Y_STRETCH - 50
 		new_bubble.position = Vector2(x, y)
 		new_bubble.popped.connect(_on_popped.bind())
-		add_child(new_bubble)
+		$Bubbles.add_child(new_bubble)
 	
 func play():
 	character_body_2d.position = _player_start_position
 	audio_stream_player.volume_db = 0
 	audio_stream_player.play()
 	playing = true
+	set_bubbles_visible()
+
+func set_bubbles_visible():
+	for bubble in $Bubbles.get_children():
+		bubble.set_visible_true()
 
 func stop():
 	playing = false
@@ -197,6 +204,7 @@ func _on_kill_zone_body_entered(body):
 	tween.tween_property(fader, "modulate", Color(1,1,1,0), 0.2)
 	tween.tween_property(audio_stream_player,"volume_db", 0, 1)
 	tween.play()
+	set_bubbles_visible()
 
 func _on_finished_level(node: Node2D):
 	print("finished")
@@ -206,4 +214,5 @@ func _on_playing_changed(value: bool):
 	
 func _on_popped():
 	points += 1
+	
 	print(points)

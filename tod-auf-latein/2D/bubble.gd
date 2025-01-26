@@ -11,7 +11,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+func set_visible_true():
+	$Sprite2D.visible = true
+	$GPUParticles2D.emitting = false
+
+func set_visible_false():
+	$Sprite2D.visible = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	$GPUParticles2D.emitting = true
 	popped.emit()
-	queue_free()
+	$Sprite2D.visible = false

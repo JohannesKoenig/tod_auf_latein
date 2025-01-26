@@ -106,8 +106,10 @@ polygon_texture = ExtResource("6_w1qqq")
 [node name="Platforms" type="Node2D" parent="."]
 material = ExtResource("2_yo1vo")
 
+[node name="Bubbles" type="Node2D" parent="."]
+
 [node name="Bubble" parent="." instance=ExtResource("4_n7hpj")]
-position = Vector2(400, 0)
+position = Vector2(-614, 222)
 scale = Vector2(2, 2)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
