@@ -23,6 +23,10 @@ buses/default_bus_layout="res://audio_bus_layout.tres"
 
 Events="*res://globals/events.gd"
 
+[gui]
+
+theme/custom_font="res://assets/AlexBrush-Regular-OTF.otf"
+
 [input]
 
 Forward={
