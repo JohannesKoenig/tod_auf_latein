@@ -115,7 +115,7 @@ scale = Vector2(2, 2)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(0, -51)
+position = Vector2(26, -51)
 collision_layer = 2
 script = ExtResource("2_0qk4n")
 

@@ -1217,6 +1217,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.6694)
 
 [node name="Painting" parent="Room2" index="3"]
 platforms_definition_file_path = "res://assets/platforms_level_2.json"
+bubbles_definition_file_path = "res://assets/bubble_json/level2_basic_pitch.json"
 audio_stream = ExtResource("4_ag6fb")
 background_material = SubResource("ShaderMaterial_1nt3b")
 background_forest_material = SubResource("ShaderMaterial_lpiow")
@@ -1236,6 +1237,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42.9978)
 
 [node name="Painting" parent="Room3" index="3"]
 platforms_definition_file_path = "res://assets/platforms_level_3.json"
+bubbles_definition_file_path = "res://assets/bubble_json/level3_basic_pitch.json"
 audio_stream = ExtResource("8_hgu6q")
 background_material = SubResource("ShaderMaterial_ttyh0")
 background_forest_material = SubResource("ShaderMaterial_5dgis")
@@ -1246,6 +1248,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.6672)
 
 [node name="Painting" parent="Room4" index="3"]
 mini_game_scene = null
+bubbles_definition_file_path = "res://assets/bubble_json/level4_basic_pitch.json"
 
 [node name="Hallway3" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -53.8523)
@@ -1258,6 +1261,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.9957)
 
 [node name="Painting" parent="Room5" index="3"]
 mini_game_scene = null
+bubbles_definition_file_path = "res://assets/bubble_json/level5_basic_pitch.json"
 
 [node name="Hallway5" parent="." instance=ExtResource("2_ymr8q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -96.8501)

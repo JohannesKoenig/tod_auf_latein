@@ -36,6 +36,7 @@ amount = 84
 process_material = SubResource("ParticleProcessMaterial_hwxvv")
 texture = ExtResource("1_13alh")
 lifetime = 2.71
+one_shot = true
 explosiveness = 0.98
 randomness = 1.0
 

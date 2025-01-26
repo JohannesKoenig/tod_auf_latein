@@ -85,6 +85,7 @@ func _ready():
 
 func _generate_polygons():
 	var x_max = -INF
+	
 	var max_width = -INF
 	var y_max = -INF
 	for platform_definition in _platform_definitions:

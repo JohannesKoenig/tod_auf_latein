@@ -42,6 +42,12 @@ adjustment_brightness = 1.71
 [node name="DoubleDoor" parent="Museum/Room/Doors" index="0"]
 is_open = true
 
+[node name="Painting" parent="Museum/Room2" index="3"]
+platform_color = Color(0, 0.175033, 0.470187, 1)
+
+[node name="Painting" parent="Museum/Room3" index="3"]
+platform_color = Color(0.453425, 0.134846, 0, 1)
+
 [node name="Room6" type="Node3D" parent="Museum"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.7187)
 
@@ -147,14 +153,8 @@ is_open = false
 [node name="DoubleDoor2" parent="Museum/Room6/Doors" instance=ExtResource("3_fht0h")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4.896)
 
-[node name="Painting" parent="Museum/Room2" index="3"]
-platform_color = Color(0, 0.175033, 0.470187, 1)
-
 [node name="Hallway7" parent="Museum" instance=ExtResource("5_dx0hn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.8705)
-
-[node name="Painting" parent="Museum/Room3" index="3"]
-platform_color = Color(0.453425, 0.134846, 0, 1)
 
 [node name="3DCharacterController" parent="." instance=ExtResource("2_vn1lp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978271, 21.7035)
