@@ -1,6 +1,9 @@
 class_name MiniGameScene extends Node2D
 
+@export var points = 0
 @export var platforms_definition_file_path: String = "res://assets/platforms.json"
+@export var bubbles_definition_file_path: String = "res://assets/variation_2_bubbles.json"
+
 @export var audio_stream: AudioStream
 @export var background_material: Material
 @export var background_forest_material: Material
@@ -15,6 +18,7 @@ class_name MiniGameScene extends Node2D
 @onready var sprite_2d = $ParallaxBackground/ParallaxLayer/Sprite2D
 @onready var sprite_2d_forest = $ParallaxBackground/ParallaxLayer2/Sprite2D
 @onready var kill_zone = $KillZone
+@onready var bubble_2d: Node2D = $Bubble
 
 @onready var gpu_particles_2d = $CharacterBody2D/GPUParticles2D
 
@@ -26,6 +30,7 @@ var rect_width = 200
 var ROUNDING: int = 10
 
 var _platform_definitions: Array
+var _bubble_definitions: Array
 var _total_length: float
 var ZOOM_FACTOR: int = 3
 var POLYGON_HEIGHT: int = 40
@@ -65,6 +70,14 @@ func _ready():
 		_total_length = dict["total_length"]
 		_platform_definitions = dict["platforms"]
 		_generate_polygons()
+	
+	if FileAccess.file_exists(bubbles_definition_file_path):
+		var file_content = FileAccess.get_file_as_string(bubbles_definition_file_path)
+		
+		var dict = JSON.parse_string(file_content)
+		_bubble_definitions = dict["platforms"]
+		_generate_bubbles()
+	
 	
 	var audio_stream_length = audio_stream_player.stream.get_length()
 	character_body_2d.speed = _total_length / audio_stream_length * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
@@ -139,6 +152,15 @@ func _generate_polygons():
 	add_child(area_2D)
 	area_2D.global_position = max_point
 
+func _generate_bubbles():
+	for bubble in _bubble_definitions:
+		var new_bubble = bubble_2d.duplicate()
+		var x = bubble["x"] * POLYGON_LENGTH_MULTIPLIER * ZOOM_FACTOR
+		var y = (bubble["y"] + POLYGON_CANVAS_Y_OFFSET) * POLYGON_CANVAS_Y_STRETCH
+		new_bubble.position = Vector2(x, y)
+		new_bubble.popped.connect(_on_popped.bind())
+		add_child(new_bubble)
+	
 func play():
 	character_body_2d.position = _player_start_position
 	audio_stream_player.volume_db = 0
@@ -182,3 +204,6 @@ func _on_finished_level(node: Node2D):
 func _on_playing_changed(value: bool):
 	gpu_particles_2d.emitting = value
 	
+func _on_popped():
+	points += 1
+	print(points)

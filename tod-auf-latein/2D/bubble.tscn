@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd4cjqmn225he"]
+
+[ext_resource type="Texture2D" uid="uid://b1r3cgxipu234" path="res://assets/bubble.png" id="1_13alh"]
+[ext_resource type="Script" path="res://2D/bubble.gd" id="1_dpyf6"]
+[ext_resource type="Shader" uid="uid://cky7qdxc48nqg" path="res://2D/bubble.tres" id="1_s8og6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g0hve"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cmjaq"]
+width = 50
+height = 36
+noise = SubResource("FastNoiseLite_g0hve")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckwpj"]
+shader = ExtResource("1_s8og6")
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_cmjaq")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kewxo"]
+radius = 13.0384
+
+[node name="Bubble" type="Node2D"]
+script = ExtResource("1_dpyf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ckwpj")
+scale = Vector2(0.945833, 0.920833)
+texture = ExtResource("1_13alh")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kewxo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
