@@ -23,6 +23,13 @@ buses/default_bus_layout="res://audio_bus_layout.tres"
 
 Events="*res://globals/events.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/stretch/mode="viewport"
+
 [gui]
 
 theme/custom_font="res://assets/AlexBrush-Regular-OTF.otf"

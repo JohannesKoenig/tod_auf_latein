@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://3D/museum.gd" id="1_1i56y"]
 [ext_resource type="PackedScene" uid="uid://dfodabcpoqqg0" path="res://3D/room.tscn" id="1_liiaf"]
 [ext_resource type="PackedScene" uid="uid://dbo3w8pbto743" path="res://3D/hallway.tscn" id="2_ymr8q"]
-[ext_resource type="AudioStream" uid="uid://nv52ibvrcm1d" path="res://assets/Museum Ambience Test 2.wav" id="3_rcl47"]
 [ext_resource type="AudioStream" uid="uid://1li78cuaxtua" path="res://assets/Variation 1 Summe.wav" id="4_ag6fb"]
 [ext_resource type="Material" uid="uid://ccg5m020rn7p8" path="res://2D/background_forest_material.tres" id="5_juuse"]
 [ext_resource type="Texture2D" uid="uid://53g1jxboe8pe" path="res://assets/field_background.png" id="6_cmia8"]
@@ -13,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://heh0ix6vqixu" path="res://assets/Variation 3 Summe.wav" id="10_dayx6"]
 [ext_resource type="AudioStream" uid="uid://cqlhfmhid46ec" path="res://assets/Variation 4 Summe.wav" id="10_e4fv0"]
 [ext_resource type="PackedScene" uid="uid://btael8354lf5l" path="res://3D/progress_indicator.tscn" id="12_5teau"]
+[ext_resource type="AudioStream" uid="uid://bd5upqvswoxeg" path="res://assets/Museum Ambience final.wav" id="13_eun88"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2pvpx"]
 input_name = "uv"
@@ -2235,7 +2235,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 3.31201, -4.65759)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -96.8501)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_rcl47")
+stream = ExtResource("13_eun88")
 autoplay = true
 
 [connection signal="finished_level" from="Room/Painting" to="Room/ProgressLight" method="level_finished"]

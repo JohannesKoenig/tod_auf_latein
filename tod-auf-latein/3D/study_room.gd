@@ -6,6 +6,7 @@ var _in_rad: Vector3
 var look_up: bool = false
 @onready var texture_rect = $CanvasLayer/TextureRect
 @onready var animation_player = $AnimationPlayer
+@onready var text = $CanvasLayer/Text
 
 
 func _ready():
@@ -31,7 +32,7 @@ func fade_in():
 	tween.play()
 
 func fade_out():
-	texture_rect.modulate = Color(0,0,0,1)
+	texture_rect.modulate = Color(0,0,0,0)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(texture_rect, "modulate", Color(0,0,0,1), 4)

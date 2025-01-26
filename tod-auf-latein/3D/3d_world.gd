@@ -6,6 +6,8 @@ extends Node3D
 func _ready():
 	double_door.is_open = false
 	Events.game_finished.connect(_on_game_finished)
+	#for i in range(1, 6):
+		#Events.finish_level(i)
 
 
 func _on_game_finished():

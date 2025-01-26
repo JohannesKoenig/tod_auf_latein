@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://pcxoswehtpmp"]
+[gd_scene load_steps=19 format=3 uid="uid://pcxoswehtpmp"]
 
 [ext_resource type="Script" path="res://3D/study_room.gd" id="1_c3ytr"]
 [ext_resource type="PackedScene" uid="uid://ciyus4vv6glao" path="res://3D/schubert.tscn" id="1_r30se"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://btr0470l8h2ob" path="res://assets/feather.glb" id="4_37gws"]
 [ext_resource type="Texture2D" uid="uid://dak3ad3d4noyn" path="res://assets/partitur.png" id="5_q5vm0"]
 [ext_resource type="AudioStream" uid="uid://i312b01ae4vt" path="res://assets/Variation 5 (Ende).wav" id="6_cplet"]
+[ext_resource type="AudioStream" uid="uid://jgi4cklmvm52" path="res://assets/Gedicht (online-audio-converter.com).wav" id="7_h85go"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fdtb"]
 albedo_color = Color(0.214011, 0.0697593, 0.023792, 1)
@@ -46,10 +47,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_fnobn"]
 resource_name = "intro"
-length = 30.0
+length = 100.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,7 +70,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(3.93333, 8.53333, 20.9333),
+"times": PackedFloat32Array(3.93333, 8.53333, 16.7333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -77,10 +90,10 @@ tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 2.16667, 23.2667, 29.6333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.0333333, 2.16667, 24.6667, 26, 55.2, 57.0333, 92.4333, 98.7999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-40.0, 0.0, 0.0, -40.0]
+"values": [-40.0, 0.0, 0.0, -20.0, -20.0, 0.0, 0.0, -80.0]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -90,6 +103,44 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Text:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 69.7667, 70.7333, 82.2333, 83.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Text2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(25.5333, 26.5, 55.6333, 57),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VoiceLine")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(26.4667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [0.0],
@@ -216,6 +267,134 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_tugsa")
 
+[node name="Text" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -163.0
+offset_right = 64.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Created by:"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -100.0
+offset_right = 148.0
+offset_bottom = 281.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "
+Clara Morrissey
+Elisa Morrissey
+Johannes König
+Nicolas Hilberg
+Rouven Süpfle 
+"
+
+[node name="Text2" type="Control" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Text2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -394.0
+offset_right = 155.0
+offset_bottom = -229.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Der Tod und das Mädchen"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Text2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -229.0
+offset_top = -285.0
+offset_right = 79.0
+offset_bottom = 328.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Vorüber, ach, vorüber 
+Geh, wilder Knochenmann 
+Ich bin noch jung, geh, lieber 
+Und rühre mich nicht an 
+Und rühre mich nicht an 
+
+Gib deine Hand 
+Du schön und zart Gebild 
+Bin Freund 
+Und komme nicht, zu strafen 
+Sei gutes Muts 
+Ich bin nicht wild 
+Sollst sanft 
+In meinen Armen schlafen"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Text2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 90.0
+offset_top = 405.0
+offset_right = 258.0
+offset_bottom = 570.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Matthias Claudius"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rg7tt")
@@ -223,3 +402,6 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_cplet")
+
+[node name="VoiceLine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_h85go")
