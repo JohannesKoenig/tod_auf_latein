@@ -3,6 +3,8 @@ class_name Painting extends Node3D
 @export var viewport_material: ShaderMaterial
 @export var mini_game_scene: PackedScene
 @export var platforms_definition_file_path: String = "res://assets/platforms.json"
+@export var bubbles_definition_file_path: String = "res://assets/bubble_json/level1_basic_pitch.json"
+
 @export var audio_stream: AudioStream
 @export var background_material: Material
 @export var background_forest_material: Material
@@ -34,6 +36,7 @@ func _ready():
 	if mini_game_scene:
 		mini_game_scene_instance = mini_game_scene.instantiate()
 		mini_game_scene_instance.platforms_definition_file_path = platforms_definition_file_path
+		mini_game_scene_instance.bubbles_definition_file_path = bubbles_definition_file_path
 		mini_game_scene_instance.audio_stream = audio_stream
 		mini_game_scene_instance.background_forest_material = background_forest_material
 		mini_game_scene_instance.background_material = background_material
