@@ -1,8 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://b65utuys8hgq"]
+[gd_scene load_steps=13 format=3 uid="uid://b65utuys8hgq"]
 
 [ext_resource type="PackedScene" uid="uid://diysw7jvds3vg" path="res://3D/museum.tscn" id="1_0et28"]
 [ext_resource type="PackedScene" uid="uid://bky1f36svx8a1" path="res://3D/3d_character_controller.tscn" id="2_vn1lp"]
+[ext_resource type="PackedScene" uid="uid://d28vfoe0e8e3h" path="res://3D/wall_segment.tscn" id="2_wup62"]
+[ext_resource type="PackedScene" uid="uid://v7c0tq87ktjp" path="res://3D/double_door.tscn" id="3_fht0h"]
 [ext_resource type="PackedScene" uid="uid://bbrac0riwlr6i" path="res://3D/gui/gui_3d.tscn" id="3_ggkf8"]
+[ext_resource type="PackedScene" uid="uid://dbo3w8pbto743" path="res://3D/hallway.tscn" id="5_dx0hn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baj5f"]
+albedo_color = Color(0.335904, 0, 0.0128781, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qy0ud"]
+material = SubResource("StandardMaterial3D_baj5f")
+size = Vector2(12, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76ys6"]
+size = Vector3(12, 1, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tvb3"]
+albedo_color = Color(0.17425, 0.0481974, 0, 1)
+roughness = 0.82
+
+[sub_resource type="BoxMesh" id="BoxMesh_hbj6g"]
+material = SubResource("StandardMaterial3D_5tvb3")
+size = Vector3(12, 1, 12)
 
 [sub_resource type="Environment" id="Environment_ptjjf"]
 tonemap_mode = 3
@@ -18,14 +39,125 @@ adjustment_brightness = 1.71
 
 [node name="Museum" parent="." instance=ExtResource("1_0et28")]
 
+[node name="DoubleDoor" parent="Museum/Room/Doors" index="0"]
+is_open = true
+
+[node name="Room6" type="Node3D" parent="Museum"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.7187)
+
+[node name="Floor" type="Node3D" parent="Museum/Room6"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Museum/Room6/Floor"]
+mesh = SubResource("PlaneMesh_qy0ud")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Museum/Room6/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Museum/Room6/Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.506294, 0)
+shape = SubResource("BoxShape3D_76ys6")
+
+[node name="Walls" type="Node3D" parent="Museum/Room6"]
+
+[node name="Wall9" type="MeshInstance3D" parent="Museum/Room6/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4453, 0)
+mesh = SubResource("BoxMesh_hbj6g")
+
+[node name="wall" type="Node3D" parent="Museum/Room6/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 0)
+
+[node name="wall_segment" parent="Museum/Room6/Walls/wall" instance=ExtResource("2_wup62")]
+
+[node name="wall_segment2" parent="Museum/Room6/Walls/wall" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="wall_segment4" parent="Museum/Room6/Walls/wall" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_segment5" parent="Museum/Room6/Walls/wall" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall_segment3" parent="Museum/Room6/Walls/wall" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="wall3" type="Node3D" parent="Museum/Room6/Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -5.2)
+
+[node name="wall_segment2" parent="Museum/Room6/Walls/wall3" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="wall_segment4" parent="Museum/Room6/Walls/wall3" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_segment5" parent="Museum/Room6/Walls/wall3" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall_segment3" parent="Museum/Room6/Walls/wall3" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="wall_segment6" parent="Museum/Room6/Walls/wall3" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.929, 0)
+
+[node name="wall4" type="Node3D" parent="Museum/Room6/Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 5.2)
+
+[node name="wall_segment2" parent="Museum/Room6/Walls/wall4" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="wall_segment6" parent="Museum/Room6/Walls/wall4" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.92904, 0)
+
+[node name="wall_segment4" parent="Museum/Room6/Walls/wall4" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_segment5" parent="Museum/Room6/Walls/wall4" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall_segment3" parent="Museum/Room6/Walls/wall4" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="wall2" type="Node3D" parent="Museum/Room6/Walls"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.2, 0, 0)
+
+[node name="wall_segment" parent="Museum/Room6/Walls/wall2" instance=ExtResource("2_wup62")]
+
+[node name="wall_segment2" parent="Museum/Room6/Walls/wall2" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="wall_segment4" parent="Museum/Room6/Walls/wall2" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_segment5" parent="Museum/Room6/Walls/wall2" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall_segment3" parent="Museum/Room6/Walls/wall2" instance=ExtResource("2_wup62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Museum/Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.158, 0)
+light_color = Color(1, 0.910121, 0.860644, 1)
+omni_range = 10.0
+
+[node name="Doors" type="Node3D" parent="Museum/Room6"]
+
+[node name="DoubleDoor" parent="Museum/Room6/Doors" instance=ExtResource("3_fht0h")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 4.89592)
+is_open = false
+
+[node name="DoubleDoor2" parent="Museum/Room6/Doors" instance=ExtResource("3_fht0h")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4.896)
+
 [node name="Painting" parent="Museum/Room2" index="3"]
 platform_color = Color(0, 0.175033, 0.470187, 1)
+
+[node name="Hallway7" parent="Museum" instance=ExtResource("5_dx0hn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.8705)
 
 [node name="Painting" parent="Museum/Room3" index="3"]
 platform_color = Color(0.453425, 0.134846, 0, 1)
 
 [node name="3DCharacterController" parent="." instance=ExtResource("2_vn1lp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344901, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978271, 21.7035)
 
 [node name="Camera3D" type="Camera3D" parent="3DCharacterController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15693, 0.0309397)
