@@ -189,11 +189,6 @@ environment = SubResource("Environment_ptjjf")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_ggkf8")]
 
-[connection signal="finished_level" from="Museum/Room/Painting" to="Museum/Room/ProgressLight" method="level_finished"]
-[connection signal="finished_level" from="Museum/Room2/Painting" to="Museum/Room2/ProgressLight" method="level_finished"]
-[connection signal="finished_level" from="Museum/Room3/Painting" to="Museum/Room3/ProgressLight" method="level_finished"]
-[connection signal="finished_level" from="Museum/Room4/Painting" to="Museum/Room4/ProgressLight" method="level_finished"]
-[connection signal="finished_level" from="Museum/Room5/Painting" to="Museum/Room5/ProgressLight" method="_on_painting_finished_level"]
 [connection signal="body_entered" from="Museum/Hallway5/MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Museum"]
